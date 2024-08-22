@@ -9,6 +9,11 @@ import (
 	"github.com/anchore/syft/syft/pkg"
 )
 
+const (
+	noAssertion     = "NOASSERTION"
+	copyrightPrefix = "Copyright"
+)
+
 // This should be a function that just surfaces licenses already validated in the package struct
 func encodeLicenses(p pkg.Package) *cyclonedx.Licenses {
 	spdx, other, ex := separateLicenses(p)
@@ -195,4 +200,32 @@ func isBalanced(expression string) bool {
 		}
 	}
 	return count == 0
+}
+
+func encodeCopyrights(p pkg.Package) string {
+	if p.Copyrights.Empty() {
+		return ""
+	}
+
+	var strArr []string
+
+	for _, c := range p.Copyrights.ToSlice() {
+		var sb strings.Builder
+		sb.WriteString(copyrightPrefix)
+
+		// Construct the string with Start Year, End Year, and Author
+		if c.StartYear != "" {
+			sb.WriteString(" " + c.StartYear)
+		}
+		if c.EndYear != "" {
+			sb.WriteString("-" + c.EndYear)
+		}
+		if c.Author != "" {
+			sb.WriteString(" " + c.Author)
+		}
+
+		strArr = append(strArr, sb.String())
+	}
+
+	return strings.Join(strArr, ", ")
 }
