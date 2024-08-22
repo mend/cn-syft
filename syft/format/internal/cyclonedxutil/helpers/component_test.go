@@ -188,6 +188,7 @@ func Test_encodeCompomentType(t *testing.T) {
 						Value: "go-module",
 					},
 				},
+				Copyright: "",
 			},
 		},
 		{
@@ -207,6 +208,8 @@ func Test_encodeCompomentType(t *testing.T) {
 						Value: "binary",
 					},
 				},
+
+				Copyright: "",
 			},
 		},
 	}

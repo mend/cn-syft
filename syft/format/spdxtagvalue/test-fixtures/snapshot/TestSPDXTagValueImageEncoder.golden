@@ -21,12 +21,12 @@ PackageChecksum: SHA256: 2731251dc34951c0e50fcc643b4c5f74922dad1a5d98f302b504cf4
 PackageLicenseConcluded: NOASSERTION
 PackageLicenseDeclared: NOASSERTION
 PackageCopyrightText: NOASSERTION
-ExternalRef: PACKAGE-MANAGER purl pkg:oci/user-image-input@sha256%3A2731251dc34951c0e50fcc643b4c5f74922dad1a5d98f302b504cf46cd5d9368?arch=
+ExternalRef: PACKAGE-MANAGER purl pkg:oci/user-image-input@sha256:2731251dc34951c0e50fcc643b4c5f74922dad1a5d98f302b504cf46cd5d9368?arch=
 
 ##### Package: package-2
 
 PackageName: package-2
-SPDXID: SPDXRef-Package-deb-package-2-4b756c6f6fb127a3
+SPDXID: SPDXRef-Package-deb-package-2-fe989317bb1cbb62
 PackageVersion: 2.0.1
 PackageSupplier: NOASSERTION
 PackageDownloadLocation: NOASSERTION
@@ -41,7 +41,7 @@ ExternalRef: PACKAGE-MANAGER purl pkg:deb/debian/package-2@2.0.1
 ##### Package: package-1
 
 PackageName: package-1
-SPDXID: SPDXRef-Package-python-package-1-2f52f617f1548337
+SPDXID: SPDXRef-Package-python-package-1-69910a93dc37ffb4
 PackageVersion: 1.0.1
 PackageSupplier: NOASSERTION
 PackageDownloadLocation: NOASSERTION
@@ -55,7 +55,7 @@ ExternalRef: PACKAGE-MANAGER purl a-purl-1
 
 ##### Relationships
 
-Relationship: SPDXRef-DocumentRoot-Image-user-image-input CONTAINS SPDXRef-Package-python-package-1-2f52f617f1548337
-Relationship: SPDXRef-DocumentRoot-Image-user-image-input CONTAINS SPDXRef-Package-deb-package-2-4b756c6f6fb127a3
+Relationship: SPDXRef-DocumentRoot-Image-user-image-input CONTAINS SPDXRef-Package-python-package-1-69910a93dc37ffb4
+Relationship: SPDXRef-DocumentRoot-Image-user-image-input CONTAINS SPDXRef-Package-deb-package-2-fe989317bb1cbb62
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-DocumentRoot-Image-user-image-input
 

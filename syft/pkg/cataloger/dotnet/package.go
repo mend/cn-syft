@@ -198,6 +198,9 @@ func getDepsJSONFilePrefix(p string) string {
 func extractNameAndVersion(nameVersion string) (name, version string) {
 	fields := strings.Split(nameVersion, "/")
 	name = fields[0]
+	if strings.HasSuffix(name, ".deps.json") {
+		name = strings.TrimSuffix(name, ".deps.json")
+	}
 	if len(fields) > 1 {
 		version = fields[1]
 	}

@@ -35,6 +35,9 @@ type Package struct {
 	// Licenses are the licenses discovered from the package metadata
 	Licenses LicenseSet
 
+	// Copyrights are the copyrights discovered with the package metadata
+	Copyrights CopyrightsSet
+
 	// Language is the language this package was written in (e.g. JavaScript, Python, etc)
 	Language Language `hash:"ignore" cyclonedx:"language"`
 
