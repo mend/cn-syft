@@ -55,6 +55,7 @@ func EncodeComponent(p pkg.Package, supplier string, locationSorter func(a, b fi
 		Supplier:           encodeSupplier(p, supplier),
 		PackageURL:         p.PURL,
 		Licenses:           encodeLicenses(p),
+		Copyright:          encodeCopyrights(p),
 		CPE:                encodeSingleCPE(p),
 		Author:             encodeAuthor(p),
 		Publisher:          encodePublisher(p),
