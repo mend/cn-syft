@@ -15,17 +15,30 @@ func DefaultOptions() []cmp.Option {
 	return BuildOptions(nil, nil)
 }
 
+func DefaultCommonOptions() []cmp.Option {
+	return CommonOptions(nil, nil, nil)
+}
+
 func DefaultIgnoreLocationLayerOptions() []cmp.Option {
 	return BuildOptions(LicenseComparerWithoutLocationLayer, LocationComparerWithoutLayer)
 }
 
 func BuildOptions(licenseCmp LicenseComparer, locationCmp LocationComparer) []cmp.Option {
+	return CommonOptions(licenseCmp, locationCmp, nil)
+}
+
+//nolint:funlen
+func CommonOptions(licenseCmp LicenseComparer, locationCmp LocationComparer, copyrightCmp CopyrightComparer) []cmp.Option {
 	if licenseCmp == nil {
 		licenseCmp = DefaultLicenseComparer
 	}
 
 	if locationCmp == nil {
 		locationCmp = DefaultLocationComparer
+	}
+
+	if copyrightCmp == nil {
+		copyrightCmp = DefaultCopyrightComparer
 	}
 
 	return []cmp.Option{
@@ -35,8 +48,26 @@ func BuildOptions(licenseCmp LicenseComparer, locationCmp LocationComparer) []cm
 		cmpopts.SortSlices(DefaultRelationshipComparer),
 		cmp.Comparer(buildSetComparer[file.Location, file.LocationSet](locationCmp, locationSorter)),
 		cmp.Comparer(buildSetComparer[pkg.License, pkg.LicenseSet](licenseCmp)),
+		cmp.Comparer(
+			func(x, y pkg.CopyrightsSet) bool {
+				xs := x.ToSlice()
+				ys := y.ToSlice()
+
+				if len(xs) != len(ys) {
+					return false
+				}
+				for i, xe := range xs {
+					ye := ys[i]
+					if !copyrightCmp(xe, ye) {
+						return false
+					}
+				}
+				return true
+			},
+		),
 		cmp.Comparer(locationCmp),
 		cmp.Comparer(licenseCmp),
+		cmp.Comparer(copyrightCmp),
 	}
 }
 

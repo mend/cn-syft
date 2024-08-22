@@ -57,6 +57,7 @@ type CatalogTester struct {
 	compareOptions                 []cmp.Option
 	locationComparer               cmptest.LocationComparer
 	licenseComparer                cmptest.LicenseComparer
+	copyrightComparer              cmptest.CopyrightComparer
 	packageStringer                func(pkg.Package) string
 	customAssertions               []func(t *testing.T, pkgs []pkg.Package, relationships []artifact.Relationship)
 	context                        context.Context
@@ -349,7 +350,7 @@ func (p *CatalogTester) TestCataloger(t *testing.T, cataloger pkg.Cataloger) {
 func (p *CatalogTester) assertPkgs(t *testing.T, pkgs []pkg.Package, relationships []artifact.Relationship) {
 	t.Helper()
 
-	p.compareOptions = append(p.compareOptions, cmptest.BuildOptions(p.licenseComparer, p.locationComparer)...)
+	p.compareOptions = append(p.compareOptions, cmptest.CommonOptions(p.licenseComparer, p.locationComparer, p.copyrightComparer)...)
 
 	{
 		r := cmptest.NewDiffReporter()
@@ -418,6 +419,7 @@ func AssertPackagesEqual(t *testing.T, a, b pkg.Package, userOpts ...cmp.Option)
 	if diff := cmp.Diff(a, b, opts...); diff != "" {
 		t.Errorf("unexpected packages from parsing (-expected +actual)\n%s", diff)
 	}
+}
 }
 
 func AssertPackagesEqualIgnoreLayers(t *testing.T, a, b pkg.Package, userOpts ...cmp.Option) {

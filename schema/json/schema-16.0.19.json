@@ -370,6 +370,28 @@
         "path"
       ]
     },
+    "Copyright": {
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "startYear": {
+          "type": "string"
+        },
+        "endYear": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": [
+        "author",
+        "startYear",
+        "endYear"
+      ]
+    },
     "DartPubspecLockEntry": {
       "properties": {
         "name": {
@@ -490,29 +512,6 @@
         "path",
         "sha512",
         "hashPath"
-      ]
-    },
-    "DotnetPackagesLockEntry": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "version": {
-          "type": "string"
-        },
-        "contentHash": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        }
-      },
-      "type": "object",
-      "required": [
-        "name",
-        "version",
-        "contentHash",
-        "type"
       ]
     },
     "DotnetPortableExecutableEntry": {
@@ -1624,6 +1623,9 @@
         "licenses": {
           "$ref": "#/$defs/licenses"
         },
+        "copyrights": {
+          "$ref": "#/$defs/copyrights"
+        },
         "language": {
           "type": "string"
         },
@@ -1670,9 +1672,6 @@
             },
             {
               "$ref": "#/$defs/DotnetDepsEntry"
-            },
-            {
-              "$ref": "#/$defs/DotnetPackagesLockEntry"
             },
             {
               "$ref": "#/$defs/DotnetPortableExecutableEntry"
@@ -1797,6 +1796,7 @@
         "foundBy",
         "locations",
         "licenses",
+        "copyrights",
         "language",
         "cpes",
         "purl"
@@ -2736,6 +2736,12 @@
       "required": [
         "pluginInstallDirectory"
       ]
+    },
+    "copyrights": {
+      "items": {
+        "$ref": "#/$defs/Copyright"
+      },
+      "type": "array"
     },
     "cpes": {
       "items": {

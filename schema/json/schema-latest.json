@@ -722,6 +722,28 @@
       "type": "object",
       "description": "DartPubspecEnvironment represents SDK version constraints from the environment section of pubspec.yaml."
     },
+    "Copyright": {
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "startYear": {
+          "type": "string"
+        },
+        "endYear": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": [
+        "author",
+        "startYear",
+        "endYear"
+      ]
+    },
     "DartPubspecLockEntry": {
       "properties": {
         "name": {
@@ -2550,6 +2572,9 @@
         "licenses": {
           "$ref": "#/$defs/licenses"
         },
+        "copyrights": {
+          "$ref": "#/$defs/copyrights"
+        },
         "language": {
           "type": "string"
         },
@@ -2768,6 +2793,7 @@
         "foundBy",
         "locations",
         "licenses",
+        "copyrights",
         "language",
         "cpes",
         "purl"
@@ -4231,6 +4257,12 @@
         "pluginInstallDirectory"
       ],
       "description": "WordpressPluginEntry represents all metadata parsed from the wordpress plugin file"
+    },
+    "copyrights": {
+      "items": {
+        "$ref": "#/$defs/Copyright"
+      },
+      "type": "array"
     },
     "cpes": {
       "items": {
