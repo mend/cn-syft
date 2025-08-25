@@ -106,11 +106,27 @@ func separateLicenses(p pkg.Package) (spdx, other cyclonedx.Licenses, expression
 			}
 			// try making set of license choices to avoid duplicates
 			// only update if the license has more information
-			spdxc = append(spdxc, cyclonedx.LicenseChoice{
-				License: &cyclonedx.License{
-					ID: value,
-				},
-			})
+
+			// Check if we can get URLs for this license from SPDX database
+			urls, _ := spdxlicense.URLs(l.SPDXExpression)
+			if len(urls) > 0 {
+				// Process each URL as a separate license choice
+				for _, url := range urls {
+					spdxc = append(spdxc, cyclonedx.LicenseChoice{
+						License: &cyclonedx.License{
+							ID:  value,
+							URL: url,
+						},
+					})
+				}
+			} else {
+				// No URLs found, create license with just ID
+				spdxc = append(spdxc, cyclonedx.LicenseChoice{
+					License: &cyclonedx.License{
+						ID: value,
+					},
+				})
+			}
 			seen[value] = true
 			// we have added the license to the SPDX license list check next license
 			continue

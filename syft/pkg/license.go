@@ -286,11 +286,19 @@ func (b *licenseBuilder) Build(ctx context.Context) LicenseSet {
 			expression = ex
 		}
 
+		// Check if we should populate URLs from SPDX database
+		urls := b.urls
+		if len(urls) == 0 && expression != "" {
+			if spdxURLs, found := spdxlicense.URLs(expression); found {
+				urls = spdxURLs
+			}
+		}
+
 		set.Add(License{
 			SPDXExpression: expression,
 			Value:          strings.TrimSpace(v),
 			Type:           b.tp,
-			URLs:           b.urls,
+			URLs:           urls,
 			Locations:      locations,
 		})
 	}
