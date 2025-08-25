@@ -10,6 +10,7 @@ import (
 	"github.com/anchore/syft/internal/log"
 	"github.com/anchore/syft/internal/packagemetadata"
 	"github.com/anchore/syft/internal/sourcemetadata"
+	"github.com/anchore/syft/internal/spdxlicense"
 	"github.com/anchore/syft/syft/artifact"
 	"github.com/anchore/syft/syft/file"
 	formatInternal "github.com/anchore/syft/syft/format/internal"
@@ -232,6 +233,13 @@ func toLicenseModel(pkgLicenses []pkg.License, locationSorter func(a, b file.Loc
 		urls := l.URLs
 		if urls == nil {
 			urls = []string{}
+		}
+
+		// If URLs are empty but we have a valid SPDX expression, try to get URLs from SPDX database
+		if len(urls) == 0 && l.SPDXExpression != "" {
+			if spdxURLs, found := spdxlicense.URLs(l.SPDXExpression); found {
+				urls = spdxURLs
+			}
 		}
 
 		modelLicenses = append(modelLicenses, model.License{
