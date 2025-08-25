@@ -193,3 +193,228 @@ func (s License) Merge(l License) (*License, error) {
 
 	return &s, nil
 }
+
+type licenseBuilder struct {
+	values    []string
+	contents  []io.ReadCloser
+	locations []file.Location
+	urls      []string
+	tp        license.Type
+}
+
+func newLicenseBuilder() *licenseBuilder {
+	return &licenseBuilder{
+		tp: license.Declared,
+	}
+}
+
+func (b *licenseBuilder) WithValues(expr ...string) *licenseBuilder {
+	for _, v := range expr {
+		if v == "" {
+			continue
+		}
+		b.values = append(b.values, v)
+	}
+	return b
+}
+
+func (b *licenseBuilder) WithOptionalLocation(location *file.Location) *licenseBuilder {
+	if location != nil {
+		b.locations = append(b.locations, *location)
+	}
+	return b
+}
+
+func (b *licenseBuilder) WithURLs(urls ...string) *licenseBuilder {
+	s := strset.New()
+	for _, u := range urls {
+		if u != "" {
+			sanitizedURL, err := stripUnwantedCharacters(u)
+			if err != nil {
+				log.Tracef("unable to sanitize url=%q: %s", u, err)
+				continue
+			}
+			s.Add(sanitizedURL)
+		}
+	}
+
+	b.urls = append(b.urls, s.List()...)
+	sort.Strings(b.urls)
+	return b
+}
+
+func (b *licenseBuilder) WithLocations(locations ...file.Location) *licenseBuilder {
+	for _, loc := range locations {
+		if loc.Path() != "" {
+			b.locations = append(b.locations, loc)
+		}
+	}
+	return b
+}
+
+func (b *licenseBuilder) WithContents(contents ...io.ReadCloser) *licenseBuilder {
+	for _, content := range contents {
+		if content != nil {
+			b.contents = append(b.contents, content)
+		}
+	}
+	return b
+}
+
+func (b *licenseBuilder) WithType(t license.Type) *licenseBuilder {
+	b.tp = t // last one wins, multiple is not valid
+	return b
+}
+
+func (b *licenseBuilder) Build(ctx context.Context) LicenseSet {
+	// for every value make a license with all locations
+	// or for every reader make a license with all locations
+	// if given a reader and a value, this is invalid
+
+	locations := file.NewLocationSet(b.locations...)
+
+	set := NewLicenseSet()
+	for _, v := range b.values {
+		if strings.Contains(v, "\n") {
+			var loc file.Location
+			if len(b.locations) > 0 {
+				loc = b.locations[0]
+			}
+			b.contents = append(b.contents, file.NewLocationReadCloser(loc, io.NopCloser(strings.NewReader(v))))
+			continue
+		}
+
+		// we want to check if the SPDX field should be set
+		var expression string
+		if ex, err := license.ParseExpression(v); err == nil {
+			expression = ex
+		}
+
+		// Check if we should populate URLs from SPDX database
+		urls := b.urls
+		if len(urls) == 0 && expression != "" {
+			if spdxURLs, found := spdxlicense.URLs(expression); found {
+				urls = spdxURLs
+			}
+		}
+
+		set.Add(License{
+			SPDXExpression: expression,
+			Value:          strings.TrimSpace(v),
+			Type:           b.tp,
+			URLs:           urls,
+			Locations:      locations,
+		})
+	}
+
+	// we have some readers (with no values); let's try to turn into licenses if we can
+	for _, content := range b.contents {
+		set.Add(b.buildFromContents(ctx, content)...)
+	}
+
+	if set.Empty() && len(b.urls) > 0 {
+		// if we have no values or contents, but we do have URLs, let's make a license with the URLs
+		// try to enrich the license by looking up the URL in the SPDX database
+		license := License{
+			Type:      b.tp,
+			URLs:      b.urls,
+			Locations: locations,
+		}
+
+		// attempt to fill in missing license information from the first URL
+		if len(b.urls) > 0 {
+			if info, found := spdxlicense.LicenseByURL(b.urls[0]); found {
+				license.Value = info.ID
+				license.SPDXExpression = info.ID
+			}
+		}
+
+		set.Add(license)
+	}
+
+	return set
+}
+
+func (b *licenseBuilder) buildFromContents(ctx context.Context, contents io.ReadCloser) []License {
+	if !licenses.IsContextLicenseScannerSet(ctx) {
+		// we do not have a scanner; we don't want to create one; we sha256 the content and populate the value
+		internal, err := contentFromReader(contents)
+		if err != nil {
+			log.WithFields("error", err).Trace("could not read content")
+			return nil
+		}
+		return []License{b.licenseFromContentHash(internal)}
+	}
+
+	scanner, err := licenses.ContextLicenseScanner(ctx)
+	if err != nil {
+		log.WithFields("error", err).Trace("could not find license scanner")
+		internal, err := contentFromReader(contents)
+		if err != nil {
+			log.WithFields("error", err).Trace("could not read content")
+			return nil
+		}
+		return []License{b.licenseFromContentHash(internal)}
+	}
+
+	evidence, content, err := scanner.FindEvidence(ctx, contents)
+	if err != nil {
+		log.WithFields("error", err).Trace("scanner failed to scan contents")
+		return nil
+	}
+
+	if len(evidence) > 0 {
+		// we have some ID and offsets to apply to our content; let's make some detailed licenses
+		return b.licensesFromEvidenceAndContent(evidence, content)
+	}
+	// scanner couldn't find anything, but we still have the file contents; sha256 and send it back with value
+	return []License{b.licenseFromContentHash(string(content))}
+}
+
+func (b *licenseBuilder) licensesFromEvidenceAndContent(evidence []licenses.Evidence, content []byte) []License {
+	ls := make([]License, 0)
+	for _, e := range evidence {
+		// basic license
+		candidate := License{
+			Value:     e.ID,
+			Locations: file.NewLocationSet(b.locations...),
+			Type:      b.tp,
+		}
+		// get content offset
+		if e.Start >= 0 && e.End <= len(content) && e.Start <= e.End {
+			candidate.Contents = string(content[e.Start:e.End])
+		}
+		// check for SPDX Validity
+		if ex, err := license.ParseExpression(e.ID); err == nil {
+			candidate.SPDXExpression = ex
+		}
+
+		ls = append(ls, candidate)
+	}
+	return ls
+}
+
+func (b *licenseBuilder) licenseFromContentHash(content string) License {
+	hash := sha256HexFromString(content)
+	value := "sha256:" + hash
+
+	return License{
+		Value:     value,
+		Contents:  content,
+		Type:      b.tp,
+		Locations: file.NewLocationSet(b.locations...),
+	}
+}
+
+func contentFromReader(r io.Reader) (string, error) {
+	bytes, err := io.ReadAll(r)
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(string(bytes)), nil
+}
+
+func sha256HexFromString(s string) string {
+	hash := sha256.Sum256([]byte(s))
+	return hex.EncodeToString(hash[:])
+}
