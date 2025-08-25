@@ -9,11 +9,6 @@ import (
 	"github.com/anchore/syft/syft/pkg"
 )
 
-const (
-	noAssertion     = "NOASSERTION"
-	copyrightPrefix = "Copyright"
-)
-
 // This should be a function that just surfaces licenses already validated in the package struct
 func encodeLicenses(p pkg.Package) *cyclonedx.Licenses {
 	spdx, other, ex := separateLicenses(p)
@@ -105,27 +100,11 @@ func separateLicenses(p pkg.Package) (spdx, other cyclonedx.Licenses, expression
 			}
 			// try making set of license choices to avoid duplicates
 			// only update if the license has more information
-
-			// Check if we can get URLs for this license from SPDX database
-			urls, _ := spdxlicense.URLs(l.SPDXExpression)
-			if len(urls) > 0 {
-				// Process each URL as a separate license choice
-				for _, url := range urls {
-					spdxc = append(spdxc, cyclonedx.LicenseChoice{
-						License: &cyclonedx.License{
-							ID:  value,
-							URL: url,
-						},
-					})
-				}
-			} else {
-				// No URLs found, create license with just ID
-				spdxc = append(spdxc, cyclonedx.LicenseChoice{
-					License: &cyclonedx.License{
-						ID: value,
-					},
-				})
-			}
+			spdxc = append(spdxc, cyclonedx.LicenseChoice{
+				License: &cyclonedx.License{
+					ID: value,
+				},
+			})
 			seen[value] = true
 			// we have added the license to the SPDX license list check next license
 			continue
@@ -216,32 +195,4 @@ func isBalanced(expression string) bool {
 		}
 	}
 	return count == 0
-}
-
-func encodeCopyrights(p pkg.Package) string {
-	if p.Copyrights.Empty() {
-		return ""
-	}
-
-	var strArr []string
-
-	for _, c := range p.Copyrights.ToSlice() {
-		var sb strings.Builder
-		sb.WriteString(copyrightPrefix)
-
-		// Construct the string with Start Year, End Year, and Author
-		if c.StartYear != "" {
-			sb.WriteString(" " + c.StartYear)
-		}
-		if c.EndYear != "" {
-			sb.WriteString("-" + c.EndYear)
-		}
-		if c.Author != "" {
-			sb.WriteString(" " + c.Author)
-		}
-
-		strArr = append(strArr, sb.String())
-	}
-
-	return strings.Join(strArr, ", ")
 }

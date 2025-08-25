@@ -71,8 +71,6 @@ func findMetadataDefinitionNames(paths ...string) ([]string, error) {
 	// remove known exceptions, that is, types exported in the pkg Package that are not used
 	// in a metadata type but are not metadata types themselves.
 	names.Remove("Licenses", "KeyValue")
-	names.Remove("Copyrights", "KeyValue")
-	names.Remove("CopyrightsSet", "KeyValue")
 
 	strNames := names.List()
 	sort.Strings(strNames)

@@ -42,7 +42,7 @@ func TestReplaceDeprecatedLicenses(t *testing.T) {
 		"duh1.0.0duh":     "Duh-1.0-duh",
 	}
 
-	licenses, _ := processSPDXLicense(results)
+	licenses := processSPDXLicense(results)
 	for k, v := range licenses {
 		e := expected[k]
 		require.Equal(t, e, v, k)
@@ -1234,8 +1234,7 @@ func Test_processSPDXLicense(t *testing.T) {
 			var list LicenseList
 			require.NoError(t, json.NewDecoder(f).Decode(&list))
 
-			licenses, _ := processSPDXLicense(list)
-			d := cmp.Diff(tt.want, licenses)
+			d := cmp.Diff(tt.want, processSPDXLicense(list))
 			if d != "" {
 				t.Log("differing license list:\n" + d)
 				t.Fail()

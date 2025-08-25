@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "anchore.io/schema/syft/json/16.0.19/document",
+  "$id": "anchore.io/schema/syft/json/16.0.18/document",
   "$ref": "#/$defs/Document",
   "$defs": {
     "AlpmDbEntry": {
@@ -368,28 +368,6 @@
       "type": "object",
       "required": [
         "path"
-      ]
-    },
-    "Copyright": {
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "author": {
-          "type": "string"
-        },
-        "startYear": {
-          "type": "string"
-        },
-        "endYear": {
-          "type": "string"
-        }
-      },
-      "type": "object",
-      "required": [
-        "author",
-        "startYear",
-        "endYear"
       ]
     },
     "DartPubspecLockEntry": {
@@ -1623,9 +1601,6 @@
         "licenses": {
           "$ref": "#/$defs/licenses"
         },
-        "copyrights": {
-          "$ref": "#/$defs/copyrights"
-        },
         "language": {
           "type": "string"
         },
@@ -1796,7 +1771,6 @@
         "foundBy",
         "locations",
         "licenses",
-        "copyrights",
         "language",
         "cpes",
         "purl"
@@ -2736,12 +2710,6 @@
       "required": [
         "pluginInstallDirectory"
       ]
-    },
-    "copyrights": {
-      "items": {
-        "$ref": "#/$defs/Copyright"
-      },
-      "type": "array"
     },
     "cpes": {
       "items": {

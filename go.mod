@@ -1,4 +1,4 @@
-module github.com/mend/cn-syft
+module github.com/anchore/syft
 
 go 1.23.2
 

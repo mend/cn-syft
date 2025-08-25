@@ -30,23 +30,6 @@ func ID(id string) (value string, exists bool) {
 	return "", false
 }
 
-// URLs returns the URLs associated with the given license ID
-// Returns the URLs for the canonical license ID if found
-func URLs(id string) ([]string, bool) {
-	// first get the canonical license ID
-	canonicalID, exists := ID(id)
-	if !exists {
-		return nil, false
-	}
-
-	// look up URLs by canonical ID
-	if urls, exists := licenseURLs[canonicalID]; exists {
-		return urls, true
-	}
-
-	return nil, false
-}
-
 func cleanLicenseID(id string) string {
 	id = strings.TrimSpace(id)
 	id = strings.ToLower(id)

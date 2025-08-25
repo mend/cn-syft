@@ -351,7 +351,6 @@ func relationshipComparer(x, y []artifact.Relationship) string {
 		artifact.Relationship{},
 		file.LocationSet{},
 		pkg.LicenseSet{},
-		pkg.CopyrightsSet{},
 	), cmpopts.SortSlices(lessRelationships))
 }
 

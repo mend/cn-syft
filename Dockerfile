@@ -27,5 +27,3 @@ LABEL io.artifacthub.package.logo-url="https://user-images.githubusercontent.com
 LABEL io.artifacthub.package.license="Apache-2.0"
 
 ENTRYPOINT ["/syft"]
-
-

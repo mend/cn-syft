@@ -1,7 +1,7 @@
 {
  "artifacts": [
   {
-   "id": "f7fdfcfa4ca6e742",
+   "id": "5a2b1ae000fcb51e",
    "name": "package-1",
    "version": "1.0.1",
    "type": "python",
@@ -21,7 +21,6 @@
      "locations": []
     }
    ],
-   "copyrights": [],
    "language": "python",
    "cpes": [
     {
@@ -45,7 +44,7 @@
    }
   },
   {
-   "id": "062f404587213e8b",
+   "id": "39392bb5e270f669",
    "name": "package-2",
    "version": "2.0.1",
    "type": "deb",
@@ -57,7 +56,6 @@
     }
    ],
    "licenses": [],
-   "copyrights": [],
    "language": "",
    "cpes": [
     {

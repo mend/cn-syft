@@ -9,21 +9,16 @@ import (
 )
 
 func DefaultCommonOptions() []cmp.Option {
-	return CommonOptions(nil, nil, nil)
+	return CommonOptions(nil, nil)
 }
 
-//nolint:funlen
-func CommonOptions(licenseCmp LicenseComparer, locationCmp LocationComparer, copyrightCmp CopyrightComparer) []cmp.Option {
+func CommonOptions(licenseCmp LicenseComparer, locationCmp LocationComparer) []cmp.Option {
 	if licenseCmp == nil {
 		licenseCmp = DefaultLicenseComparer
 	}
 
 	if locationCmp == nil {
 		locationCmp = DefaultLocationComparer
-	}
-
-	if copyrightCmp == nil {
-		copyrightCmp = DefaultCopyrightComparer
 	}
 
 	return []cmp.Option{
@@ -67,30 +62,10 @@ func CommonOptions(licenseCmp LicenseComparer, locationCmp LocationComparer, cop
 			},
 		),
 		cmp.Comparer(
-			func(x, y pkg.CopyrightsSet) bool {
-				xs := x.ToSlice()
-				ys := y.ToSlice()
-
-				if len(xs) != len(ys) {
-					return false
-				}
-				for i, xe := range xs {
-					ye := ys[i]
-					if !copyrightCmp(xe, ye) {
-						return false
-					}
-				}
-				return true
-			},
-		),
-		cmp.Comparer(
 			locationCmp,
 		),
 		cmp.Comparer(
 			licenseCmp,
-		),
-		cmp.Comparer(
-			copyrightCmp,
 		),
 	}
 }

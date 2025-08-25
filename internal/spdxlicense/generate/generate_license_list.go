@@ -31,16 +31,6 @@ var licenseIDs = map[string]string{
 	{{ printf "%q" $k }}: {{ printf "%q" $v }},
 {{- end }}
 }
-
-var licenseURLs = map[string][]string{
-{{- range $k, $v := .LicenseURLs }}
-	{{ printf "%q" $k }}: {
-	{{- range $url := $v }}
-		{{ printf "%q" $url }},
-	{{- end }}
-	},
-{{- end }}
-}
 `))
 
 var versionMatch = regexp.MustCompile(`([0-9]+)\.?([0-9]+)?\.?([0-9]+)?\.?`)
@@ -77,20 +67,18 @@ func run() error {
 		}
 	}()
 
-	licenseIDs, licenseURLs := processSPDXLicense(result)
+	licenseIDs := processSPDXLicense(result)
 
 	err = tmp.Execute(f, struct {
-		Timestamp   time.Time
-		URL         string
-		Version     string
-		LicenseIDs  map[string]string
-		LicenseURLs map[string][]string
+		Timestamp  time.Time
+		URL        string
+		Version    string
+		LicenseIDs map[string]string
 	}{
-		Timestamp:   time.Now(),
-		URL:         url,
-		Version:     result.Version,
-		LicenseIDs:  licenseIDs,
-		LicenseURLs: licenseURLs,
+		Timestamp:  time.Now(),
+		URL:        url,
+		Version:    result.Version,
+		LicenseIDs: licenseIDs,
 	})
 
 	if err != nil {
@@ -111,7 +99,7 @@ func run() error {
 // We also sort the licenses for the second pass so that cases like `GPL-1` associate to `GPL-1.0` and not `GPL-1.1`.
 // The third pass is for overwriting deprecated licenses with replacements, for example GPL-2.0+ is deprecated
 // and now maps to GPL-2.0-or-later.
-func processSPDXLicense(result LicenseList) (map[string]string, map[string][]string) {
+func processSPDXLicense(result LicenseList) map[string]string {
 	// The order of variations/permutations of a license ID matter.
 	// The permutation code can generate the same value for two difference licenses,
 	// for example: The licenses `ABC-1.0` and `ABC-1.1` can both map to `ABC1`,
@@ -124,7 +112,6 @@ func processSPDXLicense(result LicenseList) (map[string]string, map[string][]str
 	// keys are simplified by removing dashes and lowercasing ID
 	// this is so license declarations in the wild like: LGPL3 LGPL-3 lgpl3 and lgpl-3 can all match
 	licenseIDs := make(map[string]string)
-	licenseURLs := make(map[string][]string)
 	for _, l := range result.Licenses {
 		// licensePerms includes the cleanID in return slice
 		cleanID := cleanLicenseID(l.ID)
@@ -160,43 +147,9 @@ func processSPDXLicense(result LicenseList) (map[string]string, map[string][]str
 			}
 			licenseIDs[id] = l.ID
 		}
-
-		// Store URLs for the canonical license ID (not deprecated licenses get their own URLs)
-		if !l.Deprecated && len(l.SeeAlso) > 0 {
-			licenseURLs[l.ID] = l.SeeAlso
-		}
 	}
 
-	// For deprecated licenses, we need to map their URLs to the replacement license
-	for _, l := range result.Licenses {
-		if l.Deprecated && len(l.SeeAlso) > 0 {
-			replacement := result.findReplacementLicense(l)
-			targetID := l.ID
-			if replacement != nil {
-				targetID = replacement.ID
-			}
-			// Merge URLs if there are existing ones, otherwise just assign
-			if existing, exists := licenseURLs[targetID]; exists {
-				// Combine URLs and deduplicate
-				urlSet := make(map[string]bool)
-				for _, url := range existing {
-					urlSet[url] = true
-				}
-				for _, url := range l.SeeAlso {
-					urlSet[url] = true
-				}
-				var combined []string
-				for url := range urlSet {
-					combined = append(combined, url)
-				}
-				licenseURLs[targetID] = combined
-			} else {
-				licenseURLs[targetID] = l.SeeAlso
-			}
-		}
-	}
-
-	return licenseIDs, licenseURLs
+	return licenseIDs
 }
 
 func cleanLicenseID(id string) string {
