@@ -193,3 +193,4 @@ func (s License) Merge(l License) (*License, error) {
 
 	return &s, nil
 }
+
