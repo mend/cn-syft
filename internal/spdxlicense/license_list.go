@@ -1375,51 +1375,2306 @@ var licenseIDs = map[string]string{
 	"x11.0":                                 "X11",
 	"x11.0.0":                               "X11",
 	"x11.0.0distributemodificationsvariant": "X11-distribute-modifications-variant",
-	"x11.0.0swapped":                        "X11-swapped",
-	"x11.0distributemodificationsvariant":   "X11-distribute-modifications-variant",
-	"x11.0swapped":                          "X11-swapped",
-	"x11distributemodificationsvariant":     "X11-distribute-modifications-variant",
-	"x11swapped":                            "X11-swapped",
-	"xdebug1":                               "Xdebug-1.03",
-	"xdebug1.03":                            "Xdebug-1.03",
-	"xdebug1.03.0":                          "Xdebug-1.03",
-	"xerox":                                 "Xerox",
-	"xfig":                                  "Xfig",
-	"xfree861":                              "XFree86-1.1",
-	"xfree861.1":                            "XFree86-1.1",
-	"xfree861.1.0":                          "XFree86-1.1",
-	"xinetd":                                "xinetd",
-	"xkeyboardconfigzinoviev":               "xkeyboard-config-Zinoviev",
-	"xlock":                                 "xlock",
-	"xnet":                                  "Xnet",
-	"xpp":                                   "xpp",
-	"xskat":                                 "XSkat",
-	"xzoom":                                 "xzoom",
-	"ypl1":                                  "YPL-1.0",
-	"ypl1.0":                                "YPL-1.0",
-	"ypl1.0.0":                              "YPL-1.0",
-	"ypl1.1":                                "YPL-1.1",
-	"ypl1.1.0":                              "YPL-1.1",
-	"zed":                                   "Zed",
-	"zeeff":                                 "Zeeff",
-	"zend2":                                 "Zend-2.0",
-	"zend2.0":                               "Zend-2.0",
-	"zend2.0.0":                             "Zend-2.0",
-	"zimbra1":                               "Zimbra-1.3",
-	"zimbra1.3":                             "Zimbra-1.3",
-	"zimbra1.3.0":                           "Zimbra-1.3",
-	"zimbra1.4":                             "Zimbra-1.4",
-	"zimbra1.4.0":                           "Zimbra-1.4",
-	"zlib":                                  "Zlib",
-	"zlibacknowledgement":                   "zlib-acknowledgement",
-	"zpl1":                                  "ZPL-1.1",
-	"zpl1.1":                                "ZPL-1.1",
-	"zpl1.1.0":                              "ZPL-1.1",
-	"zpl2":                                  "ZPL-2.0",
-	"zpl2.0":                                "ZPL-2.0",
-	"zpl2.0.0":                              "ZPL-2.0",
-	"zpl2.1":                                "ZPL-2.1",
-	"zpl2.1.0":                              "ZPL-2.1",
+	"x11.0.0swapped": "X11-swapped",
+	"x11.0distributemodificationsvariant": "X11-distribute-modifications-variant",
+	"x11.0swapped": "X11-swapped",
+	"x11distributemodificationsvariant": "X11-distribute-modifications-variant",
+	"x11swapped": "X11-swapped",
+	"xdebug1": "Xdebug-1.03",
+	"xdebug1.03": "Xdebug-1.03",
+	"xdebug1.03.0": "Xdebug-1.03",
+	"xerox": "Xerox",
+	"xfig": "Xfig",
+	"xfree861": "XFree86-1.1",
+	"xfree861.1": "XFree86-1.1",
+	"xfree861.1.0": "XFree86-1.1",
+	"xinetd": "xinetd",
+	"xkeyboardconfigzinoviev": "xkeyboard-config-Zinoviev",
+	"xlock": "xlock",
+	"xnet": "Xnet",
+	"xpp": "xpp",
+	"xskat": "XSkat",
+	"xzoom": "xzoom",
+	"ypl1": "YPL-1.0",
+	"ypl1.0": "YPL-1.0",
+	"ypl1.0.0": "YPL-1.0",
+	"ypl1.1": "YPL-1.1",
+	"ypl1.1.0": "YPL-1.1",
+	"zed": "Zed",
+	"zeeff": "Zeeff",
+	"zend2": "Zend-2.0",
+	"zend2.0": "Zend-2.0",
+	"zend2.0.0": "Zend-2.0",
+	"zimbra1": "Zimbra-1.3",
+	"zimbra1.3": "Zimbra-1.3",
+	"zimbra1.3.0": "Zimbra-1.3",
+	"zimbra1.4": "Zimbra-1.4",
+	"zimbra1.4.0": "Zimbra-1.4",
+	"zlib": "Zlib",
+	"zlibacknowledgement": "zlib-acknowledgement",
+	"zpl1": "ZPL-1.1",
+	"zpl1.1": "ZPL-1.1",
+	"zpl1.1.0": "ZPL-1.1",
+	"zpl2": "ZPL-2.0",
+	"zpl2.0": "ZPL-2.0",
+	"zpl2.0.0": "ZPL-2.0",
+	"zpl2.1": "ZPL-2.1",
+	"zpl2.1.0": "ZPL-2.1",
+}
+
+var licenseURLs = map[string][]string{
+	"0BSD": {
+		"http://landley.net/toybox/license.html",
+		"https://opensource.org/licenses/0BSD",
+	},
+	"3D-Slicer-1.0": {
+		"https://slicer.org/LICENSE",
+		"https://github.com/Slicer/Slicer/blob/main/License.txt",
+	},
+	"AAL": {
+		"https://opensource.org/licenses/attribution",
+	},
+	"ADSL": {
+		"https://fedoraproject.org/wiki/Licensing/AmazonDigitalServicesLicense",
+	},
+	"AFL-1.1": {
+		"http://opensource.linux-mirror.org/licenses/afl-1.1.txt",
+		"http://wayback.archive.org/web/20021004124254/http://www.opensource.org/licenses/academic.php",
+	},
+	"AFL-1.2": {
+		"http://opensource.linux-mirror.org/licenses/afl-1.2.txt",
+		"http://wayback.archive.org/web/20021204204652/http://www.opensource.org/licenses/academic.php",
+	},
+	"AFL-2.0": {
+		"http://wayback.archive.org/web/20060924134533/http://www.opensource.org/licenses/afl-2.0.txt",
+	},
+	"AFL-2.1": {
+		"http://opensource.linux-mirror.org/licenses/afl-2.1.txt",
+	},
+	"AFL-3.0": {
+		"http://www.rosenlaw.com/AFL3.0.htm",
+		"https://opensource.org/licenses/afl-3.0",
+	},
+	"AGPL-1.0-only": {
+		"http://www.affero.org/oagpl.html",
+	},
+	"AGPL-1.0-or-later": {
+		"http://www.affero.org/oagpl.html",
+	},
+	"AGPL-3.0-only": {
+		"https://www.gnu.org/licenses/agpl.txt",
+		"https://opensource.org/licenses/AGPL-3.0",
+	},
+	"AGPL-3.0-or-later": {
+		"https://www.gnu.org/licenses/agpl.txt",
+		"https://opensource.org/licenses/AGPL-3.0",
+	},
+	"AMD-newlib": {
+		"https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/sys/a29khif/_close.S;h=04f52ae00de1dafbd9055ad8d73c5c697a3aae7f;hb=HEAD",
+	},
+	"AMDPLPA": {
+		"https://fedoraproject.org/wiki/Licensing/AMD_plpa_map_License",
+	},
+	"AML": {
+		"https://fedoraproject.org/wiki/Licensing/Apple_MIT_License",
+	},
+	"AML-glslang": {
+		"https://github.com/KhronosGroup/glslang/blob/main/LICENSE.txt#L949",
+		"https://docs.omniverse.nvidia.com/install-guide/latest/common/licenses.html",
+	},
+	"AMPAS": {
+		"https://fedoraproject.org/wiki/Licensing/BSD#AMPASBSD",
+	},
+	"ANTLR-PD": {
+		"http://www.antlr2.org/license.html",
+	},
+	"ANTLR-PD-fallback": {
+		"http://www.antlr2.org/license.html",
+	},
+	"APAFML": {
+		"https://fedoraproject.org/wiki/Licensing/AdobePostscriptAFM",
+	},
+	"APL-1.0": {
+		"https://opensource.org/licenses/APL-1.0",
+	},
+	"APSL-1.0": {
+		"https://fedoraproject.org/wiki/Licensing/Apple_Public_Source_License_1.0",
+	},
+	"APSL-1.1": {
+		"http://www.opensource.apple.com/source/IOSerialFamily/IOSerialFamily-7/APPLE_LICENSE",
+	},
+	"APSL-1.2": {
+		"http://www.samurajdata.se/opensource/mirror/licenses/apsl.php",
+	},
+	"APSL-2.0": {
+		"http://www.opensource.apple.com/license/apsl/",
+	},
+	"ASWF-Digital-Assets-1.0": {
+		"https://github.com/AcademySoftwareFoundation/foundation/blob/main/digital_assets/aswf_digital_assets_license_v1.0.txt",
+	},
+	"ASWF-Digital-Assets-1.1": {
+		"https://github.com/AcademySoftwareFoundation/foundation/blob/main/digital_assets/aswf_digital_assets_license_v1.1.txt",
+	},
+	"Abstyles": {
+		"https://fedoraproject.org/wiki/Licensing/Abstyles",
+	},
+	"AdaCore-doc": {
+		"https://github.com/AdaCore/xmlada/blob/master/docs/index.rst",
+		"https://github.com/AdaCore/gnatcoll-core/blob/master/docs/index.rst",
+		"https://github.com/AdaCore/gnatcoll-db/blob/master/docs/index.rst",
+	},
+	"Adobe-2006": {
+		"https://fedoraproject.org/wiki/Licensing/AdobeLicense",
+	},
+	"Adobe-Display-PostScript": {
+		"https://gitlab.freedesktop.org/xorg/xserver/-/blob/master/COPYING?ref_type=heads#L752",
+	},
+	"Adobe-Glyph": {
+		"https://fedoraproject.org/wiki/Licensing/MIT#AdobeGlyph",
+	},
+	"Adobe-Utopia": {
+		"https://gitlab.freedesktop.org/xorg/font/adobe-utopia-100dpi/-/blob/master/COPYING?ref_type=heads",
+	},
+	"Afmparse": {
+		"https://fedoraproject.org/wiki/Licensing/Afmparse",
+	},
+	"Aladdin": {
+		"http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.01/Public.htm",
+	},
+	"Apache-1.0": {
+		"http://www.apache.org/licenses/LICENSE-1.0",
+	},
+	"Apache-1.1": {
+		"http://apache.org/licenses/LICENSE-1.1",
+		"https://opensource.org/licenses/Apache-1.1",
+	},
+	"Apache-2.0": {
+		"https://www.apache.org/licenses/LICENSE-2.0",
+		"https://opensource.org/licenses/Apache-2.0",
+		"https://opensource.org/license/apache-2-0",
+	},
+	"App-s2p": {
+		"https://fedoraproject.org/wiki/Licensing/App-s2p",
+	},
+	"Arphic-1999": {
+		"http://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/LICENSE",
+	},
+	"Artistic-1.0": {
+		"https://opensource.org/licenses/Artistic-1.0",
+	},
+	"Artistic-1.0-Perl": {
+		"http://dev.perl.org/licenses/artistic.html",
+	},
+	"Artistic-1.0-cl8": {
+		"https://opensource.org/licenses/Artistic-1.0",
+	},
+	"Artistic-2.0": {
+		"http://www.perlfoundation.org/artistic_license_2_0",
+		"https://www.perlfoundation.org/artistic-license-20.html",
+		"https://opensource.org/licenses/artistic-license-2.0",
+	},
+	"Artistic-dist": {
+		"https://github.com/pexip/os-perl/blob/833cf4c86cc465ccfc627ff16db67e783156a248/debian/copyright#L2720-L2845",
+	},
+	"Aspell-RU": {
+		"https://ftp.gnu.org/gnu/aspell/dict/ru/aspell6-ru-0.99f7-1.tar.bz2",
+	},
+	"BSD-1-Clause": {
+		"https://svnweb.freebsd.org/base/head/include/ifaddrs.h?revision=326823",
+	},
+	"BSD-2-Clause": {
+		"https://opensource.org/licenses/BSD-2-Clause",
+		"http://www.netbsd.org/about/redistribution.html#default",
+	},
+	"BSD-2-Clause-Darwin": {
+		"https://github.com/file/file/blob/master/COPYING",
+	},
+	"BSD-2-Clause-Patent": {
+		"https://opensource.org/licenses/BSDplusPatent",
+	},
+	"BSD-2-Clause-Views": {
+		"https://github.com/protegeproject/protege/blob/master/license.txt",
+		"http://www.freebsd.org/copyright/freebsd-license.html",
+		"https://people.freebsd.org/~ivoras/wine/patch-wine-nvidia.sh",
+	},
+	"BSD-2-Clause-first-lines": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L664-L690",
+		"https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+	},
+	"BSD-2-Clause-pkgconf-disclaimer": {
+		"https://github.com/audacious-media-player/audacious/blob/master/src/audacious/main.cc",
+		"https://github.com/audacious-media-player/audacious/blob/master/COPYING",
+	},
+	"BSD-3-Clause": {
+		"https://opensource.org/licenses/BSD-3-Clause",
+		"https://www.eclipse.org/org/documents/edl-v10.php",
+	},
+	"BSD-3-Clause-Attribution": {
+		"https://fedoraproject.org/wiki/Licensing/BSD_with_Attribution",
+	},
+	"BSD-3-Clause-Clear": {
+		"http://labs.metacarta.com/license-explanation.html#license",
+	},
+	"BSD-3-Clause-HP": {
+		"https://github.com/zdohnal/hplip/blob/master/COPYING#L939",
+	},
+	"BSD-3-Clause-LBNL": {
+		"https://fedoraproject.org/wiki/Licensing/LBNLBSD",
+	},
+	"BSD-3-Clause-Modification": {
+		"https://fedoraproject.org/wiki/Licensing:BSD#Modification_Variant",
+	},
+	"BSD-3-Clause-No-Military-License": {
+		"https://gitlab.syncad.com/hive/dhive/-/blob/master/LICENSE",
+		"https://github.com/greymass/swift-eosio/blob/master/LICENSE",
+	},
+	"BSD-3-Clause-No-Nuclear-License": {
+		"http://download.oracle.com/otn-pub/java/licenses/bsd.txt",
+	},
+	"BSD-3-Clause-No-Nuclear-License-2014": {
+		"https://java.net/projects/javaeetutorial/pages/BerkeleyLicense",
+	},
+	"BSD-3-Clause-No-Nuclear-Warranty": {
+		"https://jogamp.org/git/?p=gluegen.git;a=blob_plain;f=LICENSE.txt",
+	},
+	"BSD-3-Clause-Open-MPI": {
+		"https://www.open-mpi.org/community/license.php",
+		"http://www.netlib.org/lapack/LICENSE.txt",
+	},
+	"BSD-3-Clause-Sun": {
+		"https://github.com/xmlark/msv/blob/b9316e2f2270bc1606952ea4939ec87fbba157f3/xsdlib/src/main/java/com/sun/msv/datatype/regexp/InternalImpl.java",
+	},
+	"BSD-3-Clause-acpica": {
+		"https://github.com/acpica/acpica/blob/master/source/common/acfileio.c#L119",
+	},
+	"BSD-3-Clause-flex": {
+		"https://github.com/westes/flex/blob/master/COPYING",
+	},
+	"BSD-4-Clause": {
+		"http://directory.fsf.org/wiki/License:BSD_4Clause",
+	},
+	"BSD-4-Clause-Shortened": {
+		"https://metadata.ftp-master.debian.org/changelogs//main/a/arpwatch/arpwatch_2.1a15-7_copyright",
+	},
+	"BSD-4-Clause-UC": {
+		"http://www.freebsd.org/copyright/license.html",
+	},
+	"BSD-4.3RENO": {
+		"https://sourceware.org/git/?p=binutils-gdb.git;a=blob;f=libiberty/strcasecmp.c;h=131d81c2ce7881fa48c363dc5bf5fb302c61ce0b;hb=HEAD",
+		"https://git.openldap.org/openldap/openldap/-/blob/master/COPYRIGHT#L55-63",
+	},
+	"BSD-4.3TAHOE": {
+		"https://github.com/389ds/389-ds-base/blob/main/ldap/include/sysexits-compat.h#L15",
+		"https://git.savannah.gnu.org/cgit/indent.git/tree/doc/indent.texi?id=a74c6b4ee49397cf330b333da1042bffa60ed14f#n1788",
+	},
+	"BSD-Advertising-Acknowledgement": {
+		"https://github.com/python-excel/xlrd/blob/master/LICENSE#L33",
+	},
+	"BSD-Attribution-HPND-disclaimer": {
+		"https://github.com/cyrusimap/cyrus-sasl/blob/master/COPYING",
+	},
+	"BSD-Inferno-Nettverk": {
+		"https://www.inet.no/dante/LICENSE",
+	},
+	"BSD-Protection": {
+		"https://fedoraproject.org/wiki/Licensing/BSD_Protection_License",
+	},
+	"BSD-Source-Code": {
+		"https://github.com/robbiehanson/CocoaHTTPServer/blob/master/LICENSE.txt",
+	},
+	"BSD-Source-beginning-file": {
+		"https://github.com/lattera/freebsd/blob/master/sys/cam/cam.c#L4",
+	},
+	"BSD-Systemics": {
+		"https://metacpan.org/release/DPARIS/Crypt-DES-2.07/source/COPYRIGHT",
+	},
+	"BSD-Systemics-W3Works": {
+		"https://metacpan.org/release/DPARIS/Crypt-Blowfish-2.14/source/COPYRIGHT#L7",
+	},
+	"BSL-1.0": {
+		"http://www.boost.org/LICENSE_1_0.txt",
+		"https://opensource.org/licenses/BSL-1.0",
+	},
+	"BUSL-1.1": {
+		"https://mariadb.com/bsl11/",
+	},
+	"Baekmuk": {
+		"https://fedoraproject.org/wiki/Licensing:Baekmuk?rd=Licensing/Baekmuk",
+	},
+	"Bahyph": {
+		"https://fedoraproject.org/wiki/Licensing/Bahyph",
+	},
+	"Barr": {
+		"https://fedoraproject.org/wiki/Licensing/Barr",
+	},
+	"Beerware": {
+		"https://fedoraproject.org/wiki/Licensing/Beerware",
+		"https://people.freebsd.org/~phk/",
+	},
+	"BitTorrent-1.0": {
+		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/licenses/BitTorrent?r1=1.1&r2=1.1.1.1&diff_format=s",
+	},
+	"BitTorrent-1.1": {
+		"http://directory.fsf.org/wiki/License:BitTorrentOSL1.1",
+	},
+	"Bitstream-Charter": {
+		"https://fedoraproject.org/wiki/Licensing/Charter#License_Text",
+		"https://raw.githubusercontent.com/blackhole89/notekit/master/data/fonts/Charter%20license.txt",
+	},
+	"Bitstream-Vera": {
+		"https://web.archive.org/web/20080207013128/http://www.gnome.org/fonts/",
+		"https://docubrain.com/sites/default/files/licenses/bitstream-vera.html",
+	},
+	"BlueOak-1.0.0": {
+		"https://blueoakcouncil.org/license/1.0.0",
+	},
+	"Boehm-GC": {
+		"https://fedoraproject.org/wiki/Licensing:MIT#Another_Minimal_variant_(found_in_libatomic_ops)",
+		"https://github.com/uim/libgcroots/blob/master/COPYING",
+		"https://github.com/ivmai/libatomic_ops/blob/master/LICENSE",
+	},
+	"Boehm-GC-without-fee": {
+		"https://github.com/MariaDB/server/blob/11.6/libmysqld/lib_sql.cc",
+	},
+	"Borceux": {
+		"https://fedoraproject.org/wiki/Licensing/Borceux",
+	},
+	"Brian-Gladman-2-Clause": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L140-L156",
+		"https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+	},
+	"Brian-Gladman-3-Clause": {
+		"https://github.com/SWI-Prolog/packages-clib/blob/master/sha1/brg_endian.h",
+	},
+	"C-UDA-1.0": {
+		"https://github.com/microsoft/Computational-Use-of-Data-Agreement/blob/master/C-UDA-1.0.md",
+		"https://cdla.dev/computational-use-of-data-agreement-v1-0/",
+	},
+	"CAL-1.0": {
+		"http://cryptographicautonomylicense.com/license-text.html",
+		"https://opensource.org/licenses/CAL-1.0",
+	},
+	"CAL-1.0-Combined-Work-Exception": {
+		"http://cryptographicautonomylicense.com/license-text.html",
+		"https://opensource.org/licenses/CAL-1.0",
+	},
+	"CATOSL-1.1": {
+		"https://opensource.org/licenses/CATOSL-1.1",
+	},
+	"CC-BY-1.0": {
+		"https://creativecommons.org/licenses/by/1.0/legalcode",
+	},
+	"CC-BY-2.0": {
+		"https://creativecommons.org/licenses/by/2.0/legalcode",
+	},
+	"CC-BY-2.5": {
+		"https://creativecommons.org/licenses/by/2.5/legalcode",
+	},
+	"CC-BY-2.5-AU": {
+		"https://creativecommons.org/licenses/by/2.5/au/legalcode",
+	},
+	"CC-BY-3.0": {
+		"https://creativecommons.org/licenses/by/3.0/legalcode",
+	},
+	"CC-BY-3.0-AT": {
+		"https://creativecommons.org/licenses/by/3.0/at/legalcode",
+	},
+	"CC-BY-3.0-AU": {
+		"https://creativecommons.org/licenses/by/3.0/au/legalcode",
+	},
+	"CC-BY-3.0-DE": {
+		"https://creativecommons.org/licenses/by/3.0/de/legalcode",
+	},
+	"CC-BY-3.0-IGO": {
+		"https://creativecommons.org/licenses/by/3.0/igo/legalcode",
+	},
+	"CC-BY-3.0-NL": {
+		"https://creativecommons.org/licenses/by/3.0/nl/legalcode",
+	},
+	"CC-BY-3.0-US": {
+		"https://creativecommons.org/licenses/by/3.0/us/legalcode",
+	},
+	"CC-BY-4.0": {
+		"https://creativecommons.org/licenses/by/4.0/legalcode",
+	},
+	"CC-BY-NC-1.0": {
+		"https://creativecommons.org/licenses/by-nc/1.0/legalcode",
+	},
+	"CC-BY-NC-2.0": {
+		"https://creativecommons.org/licenses/by-nc/2.0/legalcode",
+	},
+	"CC-BY-NC-2.5": {
+		"https://creativecommons.org/licenses/by-nc/2.5/legalcode",
+	},
+	"CC-BY-NC-3.0": {
+		"https://creativecommons.org/licenses/by-nc/3.0/legalcode",
+	},
+	"CC-BY-NC-3.0-DE": {
+		"https://creativecommons.org/licenses/by-nc/3.0/de/legalcode",
+	},
+	"CC-BY-NC-4.0": {
+		"https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+	},
+	"CC-BY-NC-ND-1.0": {
+		"https://creativecommons.org/licenses/by-nd-nc/1.0/legalcode",
+	},
+	"CC-BY-NC-ND-2.0": {
+		"https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode",
+	},
+	"CC-BY-NC-ND-2.5": {
+		"https://creativecommons.org/licenses/by-nc-nd/2.5/legalcode",
+	},
+	"CC-BY-NC-ND-3.0": {
+		"https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode",
+	},
+	"CC-BY-NC-ND-3.0-DE": {
+		"https://creativecommons.org/licenses/by-nc-nd/3.0/de/legalcode",
+	},
+	"CC-BY-NC-ND-3.0-IGO": {
+		"https://creativecommons.org/licenses/by-nc-nd/3.0/igo/legalcode",
+	},
+	"CC-BY-NC-ND-4.0": {
+		"https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+	},
+	"CC-BY-NC-SA-1.0": {
+		"https://creativecommons.org/licenses/by-nc-sa/1.0/legalcode",
+	},
+	"CC-BY-NC-SA-2.0": {
+		"https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode",
+	},
+	"CC-BY-NC-SA-2.0-DE": {
+		"https://creativecommons.org/licenses/by-nc-sa/2.0/de/legalcode",
+	},
+	"CC-BY-NC-SA-2.0-FR": {
+		"https://creativecommons.org/licenses/by-nc-sa/2.0/fr/legalcode",
+	},
+	"CC-BY-NC-SA-2.0-UK": {
+		"https://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode",
+	},
+	"CC-BY-NC-SA-2.5": {
+		"https://creativecommons.org/licenses/by-nc-sa/2.5/legalcode",
+	},
+	"CC-BY-NC-SA-3.0": {
+		"https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode",
+	},
+	"CC-BY-NC-SA-3.0-DE": {
+		"https://creativecommons.org/licenses/by-nc-sa/3.0/de/legalcode",
+	},
+	"CC-BY-NC-SA-3.0-IGO": {
+		"https://creativecommons.org/licenses/by-nc-sa/3.0/igo/legalcode",
+	},
+	"CC-BY-NC-SA-4.0": {
+		"https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode",
+	},
+	"CC-BY-ND-1.0": {
+		"https://creativecommons.org/licenses/by-nd/1.0/legalcode",
+	},
+	"CC-BY-ND-2.0": {
+		"https://creativecommons.org/licenses/by-nd/2.0/legalcode",
+	},
+	"CC-BY-ND-2.5": {
+		"https://creativecommons.org/licenses/by-nd/2.5/legalcode",
+	},
+	"CC-BY-ND-3.0": {
+		"https://creativecommons.org/licenses/by-nd/3.0/legalcode",
+	},
+	"CC-BY-ND-3.0-DE": {
+		"https://creativecommons.org/licenses/by-nd/3.0/de/legalcode",
+	},
+	"CC-BY-ND-4.0": {
+		"https://creativecommons.org/licenses/by-nd/4.0/legalcode",
+	},
+	"CC-BY-SA-1.0": {
+		"https://creativecommons.org/licenses/by-sa/1.0/legalcode",
+	},
+	"CC-BY-SA-2.0": {
+		"https://creativecommons.org/licenses/by-sa/2.0/legalcode",
+	},
+	"CC-BY-SA-2.0-UK": {
+		"https://creativecommons.org/licenses/by-sa/2.0/uk/legalcode",
+	},
+	"CC-BY-SA-2.1-JP": {
+		"https://creativecommons.org/licenses/by-sa/2.1/jp/legalcode",
+	},
+	"CC-BY-SA-2.5": {
+		"https://creativecommons.org/licenses/by-sa/2.5/legalcode",
+	},
+	"CC-BY-SA-3.0": {
+		"https://creativecommons.org/licenses/by-sa/3.0/legalcode",
+	},
+	"CC-BY-SA-3.0-AT": {
+		"https://creativecommons.org/licenses/by-sa/3.0/at/legalcode",
+	},
+	"CC-BY-SA-3.0-DE": {
+		"https://creativecommons.org/licenses/by-sa/3.0/de/legalcode",
+	},
+	"CC-BY-SA-3.0-IGO": {
+		"https://creativecommons.org/licenses/by-sa/3.0/igo/legalcode",
+	},
+	"CC-BY-SA-4.0": {
+		"https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+	},
+	"CC-PDDC": {
+		"https://creativecommons.org/licenses/publicdomain/",
+	},
+	"CC-PDM-1.0": {
+		"https://creativecommons.org/publicdomain/mark/1.0/",
+		"https://creativecommons.org/share-your-work/cclicenses/",
+	},
+	"CC-SA-1.0": {
+		"https://creativecommons.org/licenses/sa/1.0/legalcode",
+	},
+	"CC0-1.0": {
+		"https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+	},
+	"CDDL-1.0": {
+		"https://opensource.org/licenses/cddl1",
+	},
+	"CDDL-1.1": {
+		"http://glassfish.java.net/public/CDDL+GPL_1_1.html",
+		"https://javaee.github.io/glassfish/LICENSE",
+	},
+	"CDL-1.0": {
+		"http://www.opensource.apple.com/cdl/",
+		"https://fedoraproject.org/wiki/Licensing/Common_Documentation_License",
+		"https://www.gnu.org/licenses/license-list.html#ACDL",
+	},
+	"CDLA-Permissive-1.0": {
+		"https://cdla.io/permissive-1-0",
+	},
+	"CDLA-Permissive-2.0": {
+		"https://cdla.dev/permissive-2-0",
+	},
+	"CDLA-Sharing-1.0": {
+		"https://cdla.io/sharing-1-0",
+	},
+	"CECILL-1.0": {
+		"http://www.cecill.info/licences/Licence_CeCILL_V1-fr.html",
+	},
+	"CECILL-1.1": {
+		"http://www.cecill.info/licences/Licence_CeCILL_V1.1-US.html",
+	},
+	"CECILL-2.0": {
+		"http://www.cecill.info/licences/Licence_CeCILL_V2-en.html",
+	},
+	"CECILL-2.1": {
+		"http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html",
+	},
+	"CECILL-B": {
+		"http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html",
+	},
+	"CECILL-C": {
+		"http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html",
+	},
+	"CERN-OHL-1.1": {
+		"https://www.ohwr.org/project/licenses/wikis/cern-ohl-v1.1",
+	},
+	"CERN-OHL-1.2": {
+		"https://www.ohwr.org/project/licenses/wikis/cern-ohl-v1.2",
+	},
+	"CERN-OHL-P-2.0": {
+		"https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2",
+	},
+	"CERN-OHL-S-2.0": {
+		"https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2",
+	},
+	"CERN-OHL-W-2.0": {
+		"https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2",
+	},
+	"CFITSIO": {
+		"https://heasarc.gsfc.nasa.gov/docs/software/fitsio/c/f_user/node9.html",
+		"https://heasarc.gsfc.nasa.gov/docs/software/ftools/fv/doc/license.html",
+	},
+	"CMU-Mach": {
+		"https://www.cs.cmu.edu/~410/licenses.html",
+	},
+	"CMU-Mach-nodoc": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L718-L728",
+		"https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+	},
+	"CNRI-Jython": {
+		"http://www.jython.org/license.html",
+	},
+	"CNRI-Python": {
+		"https://opensource.org/licenses/CNRI-Python",
+	},
+	"CNRI-Python-GPL-Compatible": {
+		"http://www.python.org/download/releases/1.6.1/download_win/",
+	},
+	"COIL-1.0": {
+		"https://coil.apotheon.org/plaintext/01.0.txt",
+	},
+	"CPAL-1.0": {
+		"https://opensource.org/licenses/CPAL-1.0",
+	},
+	"CPL-1.0": {
+		"https://opensource.org/licenses/CPL-1.0",
+	},
+	"CPOL-1.02": {
+		"http://www.codeproject.com/info/cpol10.aspx",
+	},
+	"CUA-OPL-1.0": {
+		"https://opensource.org/licenses/CUA-OPL-1.0",
+	},
+	"Caldera": {
+		"http://www.lemis.com/grog/UNIX/ancient-source-all.pdf",
+	},
+	"Caldera-no-preamble": {
+		"https://github.com/apache/apr/blob/trunk/LICENSE#L298C6-L298C29",
+	},
+	"Catharon": {
+		"https://github.com/scummvm/scummvm/blob/v2.8.0/LICENSES/CatharonLicense.txt",
+	},
+	"ClArtistic": {
+		"http://gianluca.dellavedova.org/2011/01/03/clarified-artistic-license/",
+		"http://www.ncftp.com/ncftp/doc/LICENSE.txt",
+	},
+	"Clips": {
+		"https://github.com/DrItanium/maya/blob/master/LICENSE.CLIPS",
+	},
+	"Community-Spec-1.0": {
+		"https://github.com/CommunitySpecification/1.0/blob/master/1._Community_Specification_License-v1.md",
+	},
+	"Condor-1.1": {
+		"http://research.cs.wisc.edu/condor/license.html#condor",
+		"http://web.archive.org/web/20111123062036/http://research.cs.wisc.edu/condor/license.html#condor",
+	},
+	"Cornell-Lossless-JPEG": {
+		"https://android.googlesource.com/platform/external/dng_sdk/+/refs/heads/master/source/dng_lossless_jpeg.cpp#16",
+		"https://www.mssl.ucl.ac.uk/~mcrw/src/20050920/proto.h",
+		"https://gitlab.freedesktop.org/libopenraw/libopenraw/blob/master/lib/ljpegdecompressor.cpp#L32",
+	},
+	"Cronyx": {
+		"https://gitlab.freedesktop.org/xorg/font/alias/-/blob/master/COPYING",
+		"https://gitlab.freedesktop.org/xorg/font/cronyx-cyrillic/-/blob/master/COPYING",
+		"https://gitlab.freedesktop.org/xorg/font/misc-cyrillic/-/blob/master/COPYING",
+		"https://gitlab.freedesktop.org/xorg/font/screen-cyrillic/-/blob/master/COPYING",
+	},
+	"Crossword": {
+		"https://fedoraproject.org/wiki/Licensing/Crossword",
+	},
+	"CryptoSwift": {
+		"https://github.com/krzyzanowskim/CryptoSwift/blob/main/LICENSE",
+	},
+	"CrystalStacker": {
+		"https://fedoraproject.org/wiki/Licensing:CrystalStacker?rd=Licensing/CrystalStacker",
+	},
+	"Cube": {
+		"https://fedoraproject.org/wiki/Licensing/Cube",
+	},
+	"D-FSL-1.0": {
+		"http://www.dipp.nrw.de/d-fsl/lizenzen/",
+		"http://www.dipp.nrw.de/d-fsl/index_html/lizenzen/de/D-FSL-1_0_de.txt",
+		"http://www.dipp.nrw.de/d-fsl/index_html/lizenzen/en/D-FSL-1_0_en.txt",
+		"https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl",
+		"https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/deutsche-freie-software-lizenz",
+		"https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/german-free-software-license",
+		"https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/D-FSL-1_0_de.txt/at_download/file",
+		"https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/D-FSL-1_0_en.txt/at_download/file",
+	},
+	"DEC-3-Clause": {
+		"https://gitlab.freedesktop.org/xorg/xserver/-/blob/master/COPYING?ref_type=heads#L239",
+	},
+	"DL-DE-BY-2.0": {
+		"https://www.govdata.de/dl-de/by-2-0",
+	},
+	"DL-DE-ZERO-2.0": {
+		"https://www.govdata.de/dl-de/zero-2-0",
+	},
+	"DOC": {
+		"http://www.cs.wustl.edu/~schmidt/ACE-copying.html",
+		"https://www.dre.vanderbilt.edu/~schmidt/ACE-copying.html",
+	},
+	"DRL-1.0": {
+		"https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md",
+	},
+	"DRL-1.1": {
+		"https://github.com/SigmaHQ/Detection-Rule-License/blob/6ec7fbde6101d101b5b5d1fcb8f9b69fbc76c04a/LICENSE.Detection.Rules.md",
+	},
+	"DSDP": {
+		"https://fedoraproject.org/wiki/Licensing/DSDP",
+	},
+	"DocBook-DTD": {
+		"http://www.docbook.org/xml/simple/1.1/docbook-simple-1.1.zip",
+	},
+	"DocBook-Schema": {
+		"https://github.com/docbook/xslt10-stylesheets/blob/efd62655c11cc8773708df7a843613fa1e932bf8/xsl/assembly/schema/docbook51b7.rnc",
+	},
+	"DocBook-Stylesheet": {
+		"http://www.docbook.org/xml/5.0/docbook-5.0.zip",
+	},
+	"DocBook-XML": {
+		"https://github.com/docbook/xslt10-stylesheets/blob/efd62655c11cc8773708df7a843613fa1e932bf8/xsl/COPYING#L27",
+	},
+	"Dotseqn": {
+		"https://fedoraproject.org/wiki/Licensing/Dotseqn",
+	},
+	"ECL-1.0": {
+		"https://opensource.org/licenses/ECL-1.0",
+	},
+	"ECL-2.0": {
+		"https://opensource.org/licenses/ECL-2.0",
+	},
+	"EFL-1.0": {
+		"http://www.eiffel-nice.org/license/forum.txt",
+		"https://opensource.org/licenses/EFL-1.0",
+	},
+	"EFL-2.0": {
+		"http://www.eiffel-nice.org/license/eiffel-forum-license-2.html",
+		"https://opensource.org/licenses/EFL-2.0",
+	},
+	"EPICS": {
+		"https://epics.anl.gov/license/open.php",
+	},
+	"EPL-1.0": {
+		"http://www.eclipse.org/legal/epl-v10.html",
+		"https://opensource.org/licenses/EPL-1.0",
+	},
+	"EPL-2.0": {
+		"https://www.eclipse.org/legal/epl-2.0",
+		"https://www.opensource.org/licenses/EPL-2.0",
+		"https://www.eclipse.org/legal/epl-v20.html",
+		"https://projects.eclipse.org/license/epl-2.0",
+	},
+	"EUDatagrid": {
+		"http://eu-datagrid.web.cern.ch/eu-datagrid/license.html",
+		"https://opensource.org/licenses/EUDatagrid",
+	},
+	"EUPL-1.0": {
+		"http://ec.europa.eu/idabc/en/document/7330.html",
+		"http://ec.europa.eu/idabc/servlets/Doc027f.pdf?id=31096",
+	},
+	"EUPL-1.1": {
+		"https://joinup.ec.europa.eu/software/page/eupl/licence-eupl",
+		"https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl1.1.-licence-en_0.pdf",
+		"https://opensource.org/licenses/EUPL-1.1",
+	},
+	"EUPL-1.2": {
+		"https://joinup.ec.europa.eu/page/eupl-text-11-12",
+		"https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_en.pdf",
+		"https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt",
+		"https://joinup.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20EN(1).txt",
+		"http://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32017D0863",
+		"https://opensource.org/licenses/EUPL-1.2",
+	},
+	"Elastic-2.0": {
+		"https://www.elastic.co/licensing/elastic-license",
+		"https://github.com/elastic/elasticsearch/blob/master/licenses/ELASTIC-LICENSE-2.0.txt",
+	},
+	"Entessa": {
+		"https://opensource.org/licenses/Entessa",
+	},
+	"ErlPL-1.1": {
+		"http://www.erlang.org/EPLICENSE",
+	},
+	"Eurosym": {
+		"https://fedoraproject.org/wiki/Licensing/Eurosym",
+	},
+	"FBM": {
+		"https://github.com/SWI-Prolog/packages-xpce/blob/161a40cd82004f731ba48024f9d30af388a7edf5/src/img/gifwrite.c#L21-L26",
+	},
+	"FDK-AAC": {
+		"https://fedoraproject.org/wiki/Licensing/FDK-AAC",
+		"https://directory.fsf.org/wiki/License:Fdk",
+	},
+	"FSFAP": {
+		"https://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html",
+	},
+	"FSFAP-no-warranty-disclaimer": {
+		"https://git.savannah.gnu.org/cgit/wget.git/tree/util/trunc.c?h=v1.21.3&id=40747a11e44ced5a8ac628a41f879ced3e2ebce9#n6",
+	},
+	"FSFUL": {
+		"https://fedoraproject.org/wiki/Licensing/FSF_Unlimited_License",
+	},
+	"FSFULLR": {
+		"https://fedoraproject.org/wiki/Licensing/FSF_Unlimited_License#License_Retention_Variant",
+	},
+	"FSFULLRSD": {
+		"https://git.savannah.gnu.org/cgit/gnulib.git/tree/modules/COPYING?id=7b08932179d0d6b017f7df01a2ddf6e096b038e3",
+	},
+	"FSFULLRWD": {
+		"https://lists.gnu.org/archive/html/autoconf/2012-04/msg00061.html",
+	},
+	"FSL-1.1-ALv2": {
+		"https://fsl.software/FSL-1.1-ALv2.template.md",
+	},
+	"FSL-1.1-MIT": {
+		"https://fsl.software/FSL-1.1-MIT.template.md",
+	},
+	"FTL": {
+		"http://freetype.fis.uniroma2.it/FTL.TXT",
+		"http://git.savannah.gnu.org/cgit/freetype/freetype2.git/tree/docs/FTL.TXT",
+		"http://gitlab.freedesktop.org/freetype/freetype/-/raw/master/docs/FTL.TXT",
+	},
+	"Fair": {
+		"https://web.archive.org/web/20150926120323/http://fairlicense.org/",
+		"https://opensource.org/licenses/Fair",
+	},
+	"Ferguson-Twofish": {
+		"https://github.com/wernerd/ZRTPCPP/blob/6b3cd8e6783642292bad0c21e3e5e5ce45ff3e03/cryptcommon/twofish.c#L113C3-L127",
+	},
+	"Frameworx-1.0": {
+		"https://opensource.org/licenses/Frameworx-1.0",
+	},
+	"FreeBSD-DOC": {
+		"https://www.freebsd.org/copyright/freebsd-doc-license/",
+	},
+	"FreeImage": {
+		"http://freeimage.sourceforge.net/freeimage-license.txt",
+	},
+	"Furuseth": {
+		"https://git.openldap.org/openldap/openldap/-/blob/master/COPYRIGHT?ref_type=heads#L39-51",
+	},
+	"GCR-docs": {
+		"https://github.com/GNOME/gcr/blob/master/docs/COPYING",
+	},
+	"GD": {
+		"https://libgd.github.io/manuals/2.3.0/files/license-txt.html",
+	},
+	"GFDL-1.1-invariants-only": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
+	},
+	"GFDL-1.1-invariants-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
+	},
+	"GFDL-1.1-no-invariants-only": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
+	},
+	"GFDL-1.1-no-invariants-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
+	},
+	"GFDL-1.1-only": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
+	},
+	"GFDL-1.1-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
+	},
+	"GFDL-1.2-invariants-only": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
+	},
+	"GFDL-1.2-invariants-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
+	},
+	"GFDL-1.2-no-invariants-only": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
+	},
+	"GFDL-1.2-no-invariants-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
+	},
+	"GFDL-1.2-only": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
+	},
+	"GFDL-1.2-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
+	},
+	"GFDL-1.3-invariants-only": {
+		"https://www.gnu.org/licenses/fdl-1.3.txt",
+	},
+	"GFDL-1.3-invariants-or-later": {
+		"https://www.gnu.org/licenses/fdl-1.3.txt",
+	},
+	"GFDL-1.3-no-invariants-only": {
+		"https://www.gnu.org/licenses/fdl-1.3.txt",
+	},
+	"GFDL-1.3-no-invariants-or-later": {
+		"https://www.gnu.org/licenses/fdl-1.3.txt",
+	},
+	"GFDL-1.3-only": {
+		"https://www.gnu.org/licenses/fdl-1.3.txt",
+	},
+	"GFDL-1.3-or-later": {
+		"https://www.gnu.org/licenses/fdl-1.3.txt",
+	},
+	"GL2PS": {
+		"http://www.geuz.org/gl2ps/COPYING.GL2PS",
+	},
+	"GLWTPL": {
+		"https://github.com/me-shaon/GLWTPL/commit/da5f6bc734095efbacb442c0b31e33a65b9d6e85",
+	},
+	"GPL-1.0-only": {
+		"https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html",
+	},
+	"GPL-1.0-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html",
+	},
+	"GPL-2.0-only": {
+		"https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+		"https://opensource.org/licenses/GPL-2.0",
+		"https://github.com/openjdk/jdk/blob/6162e2c5213c5dd7c1127fd9616b543efa898962/LICENSE",
+		"https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
+	},
+	"GPL-2.0-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
+		"https://opensource.org/licenses/GPL-2.0",
+		"https://github.com/openjdk/jdk/blob/6162e2c5213c5dd7c1127fd9616b543efa898962/LICENSE",
+	},
+	"GPL-2.0-with-GCC-exception": {
+		"https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/libgcc1.c;h=762f5143fc6eed57b6797c82710f3538aa52b40b;hb=cb143a3ce4fb417c68f5fa2691a1b1b1053dfba9#l10",
+	},
+	"GPL-2.0-with-autoconf-exception": {
+		"http://ac-archive.sourceforge.net/doc/copyright.html",
+	},
+	"GPL-2.0-with-bison-exception": {
+		"http://git.savannah.gnu.org/cgit/bison.git/tree/data/yacc.c?id=193d7c7054ba7197b0789e14965b739162319b5e#n141",
+	},
+	"GPL-2.0-with-classpath-exception": {
+		"https://www.gnu.org/software/classpath/license.html",
+	},
+	"GPL-2.0-with-font-exception": {
+		"https://www.gnu.org/licenses/gpl-faq.html#FontException",
+	},
+	"GPL-3.0-only": {
+		"https://www.gnu.org/licenses/gpl-3.0-standalone.html",
+		"https://opensource.org/licenses/GPL-3.0",
+	},
+	"GPL-3.0-or-later": {
+		"https://www.gnu.org/licenses/gpl-3.0-standalone.html",
+		"https://opensource.org/licenses/GPL-3.0",
+	},
+	"GPL-3.0-with-GCC-exception": {
+		"https://www.gnu.org/licenses/gcc-exception-3.1.html",
+	},
+	"GPL-3.0-with-autoconf-exception": {
+		"https://www.gnu.org/licenses/autoconf-exception-3.0.html",
+	},
+	"Game-Programming-Gems": {
+		"https://github.com/OGRECave/ogre/blob/master/OgreMain/include/OgreSingleton.h#L28C3-L35C46",
+	},
+	"Giftware": {
+		"http://liballeg.org/license.html#allegro-4-the-giftware-license",
+	},
+	"Glide": {
+		"http://www.users.on.net/~triforce/glidexp/COPYING.txt",
+	},
+	"Glulxe": {
+		"https://fedoraproject.org/wiki/Licensing/Glulxe",
+	},
+	"Graphics-Gems": {
+		"https://github.com/erich666/GraphicsGems/blob/master/LICENSE.md",
+	},
+	"Gutmann": {
+		"https://www.cs.auckland.ac.nz/~pgut001/dumpasn1.c",
+	},
+	"HDF5": {
+		"https://github.com/HDFGroup/hdf5/?tab=License-1-ov-file#readme",
+	},
+	"HIDAPI": {
+		"https://github.com/signal11/hidapi/blob/master/LICENSE-orig.txt",
+	},
+	"HP-1986": {
+		"https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/machine/hppa/memchr.S;h=1cca3e5e8867aa4bffef1f75a5c1bba25c0c441e;hb=HEAD#l2",
+	},
+	"HP-1989": {
+		"https://github.com/bleargh45/Data-UUID/blob/master/LICENSE",
+	},
+	"HPND": {
+		"https://opensource.org/licenses/HPND",
+		"http://lists.opensource.org/pipermail/license-discuss_lists.opensource.org/2002-November/006304.html",
+	},
+	"HPND-DEC": {
+		"https://gitlab.freedesktop.org/xorg/app/xkbcomp/-/blob/master/COPYING?ref_type=heads#L69",
+	},
+	"HPND-Fenneberg-Livingston": {
+		"https://github.com/FreeRADIUS/freeradius-client/blob/master/COPYRIGHT#L32",
+		"https://github.com/radcli/radcli/blob/master/COPYRIGHT#L34",
+	},
+	"HPND-INRIA-IMAG": {
+		"https://github.com/ppp-project/ppp/blob/master/pppd/ipv6cp.c#L75-L83",
+	},
+	"HPND-Intel": {
+		"https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/machine/i960/memcpy.S;hb=HEAD",
+	},
+	"HPND-Kevlin-Henney": {
+		"https://github.com/mruby/mruby/blob/83d12f8d52522cdb7c8cc46fad34821359f453e6/mrbgems/mruby-dir/src/Win/dirent.c#L127-L140",
+	},
+	"HPND-MIT-disclaimer": {
+		"https://metacpan.org/release/NLNETLABS/Net-DNS-SEC-1.22/source/LICENSE",
+	},
+	"HPND-Markus-Kuhn": {
+		"https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c",
+		"https://sourceware.org/git/?p=binutils-gdb.git;a=blob;f=readline/readline/support/wcwidth.c;h=0f5ec995796f4813abbcf4972aec0378ab74722a;hb=HEAD#l55",
+	},
+	"HPND-Pbmplus": {
+		"https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/netpbm.c#l8",
+	},
+	"HPND-UC": {
+		"https://core.tcl-lang.org/tk/file?name=compat/unistd.h",
+	},
+	"HPND-UC-export-US": {
+		"https://github.com/RTimothyEdwards/magic/blob/master/LICENSE",
+	},
+	"HPND-doc": {
+		"https://gitlab.freedesktop.org/xorg/lib/libxext/-/blob/master/COPYING?ref_type=heads#L185-197",
+		"https://gitlab.freedesktop.org/xorg/lib/libxtst/-/blob/master/COPYING?ref_type=heads#L70-77",
+	},
+	"HPND-doc-sell": {
+		"https://gitlab.freedesktop.org/xorg/lib/libxtst/-/blob/master/COPYING?ref_type=heads#L108-117",
+		"https://gitlab.freedesktop.org/xorg/lib/libxext/-/blob/master/COPYING?ref_type=heads#L153-162",
+	},
+	"HPND-export-US": {
+		"https://www.kermitproject.org/ck90.html#source",
+	},
+	"HPND-export-US-acknowledgement": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L831-L852",
+		"https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+	},
+	"HPND-export-US-modify": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L1157-L1182",
+		"https://github.com/pythongssapi/k5test/blob/v0.10.3/K5TEST-LICENSE.txt",
+	},
+	"HPND-export2-US": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L111-L133",
+		"https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+	},
+	"HPND-merchantability-variant": {
+		"https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/misc/fini.c;hb=HEAD",
+	},
+	"HPND-sell-MIT-disclaimer-xserver": {
+		"https://gitlab.freedesktop.org/xorg/xserver/-/blob/master/COPYING?ref_type=heads#L1781",
+	},
+	"HPND-sell-regexpr": {
+		"https://gitlab.com/bacula-org/bacula/-/blob/Branch-11.0/bacula/LICENSE-FOSS?ref_type=heads#L245",
+	},
+	"HPND-sell-variant": {
+		"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/net/sunrpc/auth_gss/gss_generic_token.c?h=v4.19",
+		"https://github.com/kfish/xsel/blob/master/COPYING",
+	},
+	"HPND-sell-variant-MIT-disclaimer": {
+		"https://github.com/sigmavirus24/x11-ssh-askpass/blob/master/README",
+	},
+	"HPND-sell-variant-MIT-disclaimer-rev": {
+		"https://github.com/sigmavirus24/x11-ssh-askpass/blob/master/dynlist.c",
+	},
+	"HTMLTIDY": {
+		"https://github.com/htacg/tidy-html5/blob/next/README/LICENSE.md",
+	},
+	"HaskellReport": {
+		"https://fedoraproject.org/wiki/Licensing/Haskell_Language_Report_License",
+	},
+	"Hippocratic-2.1": {
+		"https://firstdonoharm.dev/version/2/1/license.html",
+		"https://github.com/EthicalSource/hippocratic-license/blob/58c0e646d64ff6fbee275bfe2b9492f914e3ab2a/LICENSE.txt",
+	},
+	"IBM-pibs": {
+		"http://git.denx.de/?p=u-boot.git;a=blob;f=arch/powerpc/cpu/ppc4xx/miiphy.c;h=297155fdafa064b955e53e9832de93bfb0cfb85b;hb=9fab4bf4cc077c21e43941866f3f2c196f28670d",
+	},
+	"ICU": {
+		"http://source.icu-project.org/repos/icu/icu/trunk/license.html",
+	},
+	"IEC-Code-Components-EULA": {
+		"https://www.iec.ch/webstore/custserv/pdf/CC-EULA.pdf",
+		"https://www.iec.ch/CCv1",
+		"https://www.iec.ch/copyright",
+	},
+	"IJG": {
+		"http://dev.w3.org/cvsweb/Amaya/libjpeg/Attic/README?rev=1.2",
+	},
+	"IJG-short": {
+		"https://sourceforge.net/p/xmedcon/code/ci/master/tree/libs/ljpg/",
+	},
+	"IPA": {
+		"https://opensource.org/licenses/IPA",
+	},
+	"IPL-1.0": {
+		"https://opensource.org/licenses/IPL-1.0",
+	},
+	"ISC": {
+		"https://www.isc.org/licenses/",
+		"https://www.isc.org/downloads/software-support-policy/isc-license/",
+		"https://opensource.org/licenses/ISC",
+	},
+	"ISC-Veillard": {
+		"https://raw.githubusercontent.com/GNOME/libxml2/4c2e7c651f6c2f0d1a74f350cbda95f7df3e7017/hash.c",
+		"https://github.com/GNOME/libxml2/blob/master/dict.c",
+		"https://sourceforge.net/p/ctrio/git/ci/master/tree/README",
+	},
+	"ImageMagick": {
+		"http://www.imagemagick.org/script/license.php",
+	},
+	"Imlib2": {
+		"http://trac.enlightenment.org/e/browser/trunk/imlib2/COPYING",
+		"https://git.enlightenment.org/legacy/imlib2.git/tree/COPYING",
+	},
+	"Info-ZIP": {
+		"http://www.info-zip.org/license.html",
+	},
+	"Inner-Net-2.0": {
+		"https://fedoraproject.org/wiki/Licensing/Inner_Net_License",
+		"https://sourceware.org/git/?p=glibc.git;a=blob;f=LICENSES;h=530893b1dc9ea00755603c68fb36bd4fc38a7be8;hb=HEAD#l207",
+	},
+	"InnoSetup": {
+		"https://github.com/jrsoftware/issrc/blob/HEAD/license.txt",
+	},
+	"Intel": {
+		"https://opensource.org/licenses/Intel",
+	},
+	"Intel-ACPI": {
+		"https://fedoraproject.org/wiki/Licensing/Intel_ACPI_Software_License_Agreement",
+	},
+	"Interbase-1.0": {
+		"https://web.archive.org/web/20060319014854/http://info.borland.com/devsupport/interbase/opensource/IPL.html",
+	},
+	"JPL-image": {
+		"https://www.jpl.nasa.gov/jpl-image-use-policy",
+	},
+	"JPNIC": {
+		"https://gitlab.isc.org/isc-projects/bind9/blob/master/COPYRIGHT#L366",
+	},
+	"JSON": {
+		"http://www.json.org/license.html",
+	},
+	"Jam": {
+		"https://www.boost.org/doc/libs/1_35_0/doc/html/jam.html",
+		"https://web.archive.org/web/20160330173339/https://swarm.workshop.perforce.com/files/guest/perforce_software/jam/src/README",
+	},
+	"JasPer-2.0": {
+		"http://www.ece.uvic.ca/~mdadams/jasper/LICENSE",
+	},
+	"Kastrup": {
+		"https://ctan.math.utah.edu/ctan/tex-archive/macros/generic/kastrup/binhex.dtx",
+	},
+	"Kazlib": {
+		"http://git.savannah.gnu.org/cgit/kazlib.git/tree/except.c?id=0062df360c2d17d57f6af19b0e444c51feb99036",
+	},
+	"Knuth-CTAN": {
+		"https://ctan.org/license/knuth",
+	},
+	"LAL-1.2": {
+		"http://artlibre.org/licence/lal/licence-art-libre-12/",
+	},
+	"LAL-1.3": {
+		"https://artlibre.org/",
+	},
+	"LGPL-2.0-only": {
+		"https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html",
+	},
+	"LGPL-2.0-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html",
+	},
+	"LGPL-2.1-only": {
+		"https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+		"https://opensource.org/licenses/LGPL-2.1",
+	},
+	"LGPL-2.1-or-later": {
+		"https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+		"https://opensource.org/licenses/LGPL-2.1",
+	},
+	"LGPL-3.0-only": {
+		"https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+		"https://www.gnu.org/licenses/lgpl+gpl-3.0.txt",
+		"https://opensource.org/licenses/LGPL-3.0",
+	},
+	"LGPL-3.0-or-later": {
+		"https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+		"https://www.gnu.org/licenses/lgpl+gpl-3.0.txt",
+		"https://opensource.org/licenses/LGPL-3.0",
+	},
+	"LGPLLR": {
+		"http://www-igm.univ-mlv.fr/~unitex/lgpllr.html",
+	},
+	"LOOP": {
+		"https://gitlab.com/embeddable-common-lisp/ecl/-/blob/develop/src/lsp/loop.lsp",
+		"http://git.savannah.gnu.org/cgit/gcl.git/tree/gcl/lsp/gcl_loop.lsp?h=Version_2_6_13pre",
+		"https://sourceforge.net/p/sbcl/sbcl/ci/master/tree/src/code/loop.lisp",
+		"https://github.com/cl-adams/adams/blob/master/LICENSE.md",
+		"https://github.com/blakemcbride/eclipse-lisp/blob/master/lisp/loop.lisp",
+		"https://gitlab.common-lisp.net/cmucl/cmucl/-/blob/master/src/code/loop.lisp",
+	},
+	"LPD-document": {
+		"https://github.com/Cyan4973/xxHash/blob/dev/doc/xxhash_spec.md",
+		"https://www.ietf.org/rfc/rfc1952.txt",
+	},
+	"LPL-1.0": {
+		"https://opensource.org/licenses/LPL-1.0",
+	},
+	"LPL-1.02": {
+		"http://plan9.bell-labs.com/plan9/license.html",
+		"https://opensource.org/licenses/LPL-1.02",
+	},
+	"LPPL-1.0": {
+		"http://www.latex-project.org/lppl/lppl-1-0.txt",
+	},
+	"LPPL-1.1": {
+		"http://www.latex-project.org/lppl/lppl-1-1.txt",
+	},
+	"LPPL-1.2": {
+		"http://www.latex-project.org/lppl/lppl-1-2.txt",
+	},
+	"LPPL-1.3a": {
+		"http://www.latex-project.org/lppl/lppl-1-3a.txt",
+	},
+	"LPPL-1.3c": {
+		"http://www.latex-project.org/lppl/lppl-1-3c.txt",
+		"https://opensource.org/licenses/LPPL-1.3c",
+	},
+	"LZMA-SDK-9.11-to-9.20": {
+		"https://www.7-zip.org/sdk.html",
+		"https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/",
+	},
+	"LZMA-SDK-9.22": {
+		"https://www.7-zip.org/sdk.html",
+		"https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/",
+	},
+	"Latex2e": {
+		"https://fedoraproject.org/wiki/Licensing/Latex2e",
+	},
+	"Latex2e-translated-notice": {
+		"https://git.savannah.gnu.org/cgit/indent.git/tree/doc/indent.texi?id=a74c6b4ee49397cf330b333da1042bffa60ed14f#n74",
+	},
+	"Leptonica": {
+		"https://fedoraproject.org/wiki/Licensing/Leptonica",
+	},
+	"LiLiQ-P-1.1": {
+		"https://forge.gouv.qc.ca/licence/fr/liliq-v1-1/",
+		"http://opensource.org/licenses/LiLiQ-P-1.1",
+	},
+	"LiLiQ-R-1.1": {
+		"https://www.forge.gouv.qc.ca/participez/licence-logicielle/licence-libre-du-quebec-liliq-en-francais/licence-libre-du-quebec-reciprocite-liliq-r-v1-1/",
+		"http://opensource.org/licenses/LiLiQ-R-1.1",
+	},
+	"LiLiQ-Rplus-1.1": {
+		"https://www.forge.gouv.qc.ca/participez/licence-logicielle/licence-libre-du-quebec-liliq-en-francais/licence-libre-du-quebec-reciprocite-forte-liliq-r-v1-1/",
+		"http://opensource.org/licenses/LiLiQ-Rplus-1.1",
+	},
+	"Libpng": {
+		"http://www.libpng.org/pub/png/src/libpng-LICENSE.txt",
+	},
+	"Linux-OpenIB": {
+		"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/infiniband/core/sa.h",
+	},
+	"Linux-man-pages-1-para": {
+		"https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/man2/getcpu.2#n4",
+	},
+	"Linux-man-pages-copyleft": {
+		"https://www.kernel.org/doc/man-pages/licenses.html",
+	},
+	"Linux-man-pages-copyleft-2-para": {
+		"https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/man2/move_pages.2#n5",
+		"https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/man2/migrate_pages.2#n8",
+	},
+	"Linux-man-pages-copyleft-var": {
+		"https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/man2/set_mempolicy.2#n5",
+	},
+	"Lucida-Bitmap-Fonts": {
+		"https://gitlab.freedesktop.org/xorg/font/bh-100dpi/-/blob/master/COPYING?ref_type=heads",
+	},
+	"MIPS": {
+		"https://sourceware.org/cgit/binutils-gdb/tree/include/coff/sym.h#n11",
+	},
+	"MIT": {
+		"https://opensource.org/license/mit/",
+		"http://opensource.org/licenses/MIT",
+	},
+	"MIT-0": {
+		"https://github.com/aws/mit-0",
+		"https://romanrm.net/mit-zero",
+		"https://github.com/awsdocs/aws-cloud9-user-guide/blob/master/LICENSE-SAMPLECODE",
+	},
+	"MIT-CMU": {
+		"https://fedoraproject.org/wiki/Licensing:MIT?rd=Licensing/MIT#CMU_Style",
+		"https://github.com/python-pillow/Pillow/blob/fffb426092c8db24a5f4b6df243a8a3c01fb63cd/LICENSE",
+	},
+	"MIT-Click": {
+		"https://github.com/kohler/t1utils/blob/master/LICENSE",
+	},
+	"MIT-Festival": {
+		"https://github.com/festvox/flite/blob/master/COPYING",
+		"https://github.com/festvox/speech_tools/blob/master/COPYING",
+	},
+	"MIT-Khronos-old": {
+		"https://github.com/KhronosGroup/SPIRV-Cross/blob/main/LICENSES/LicenseRef-KhronosFreeUse.txt",
+	},
+	"MIT-Modern-Variant": {
+		"https://fedoraproject.org/wiki/Licensing:MIT#Modern_Variants",
+		"https://ptolemy.berkeley.edu/copyright.htm",
+		"https://pirlwww.lpl.arizona.edu/resources/guide/software/PerlTk/Tixlic.html",
+	},
+	"MIT-Wu": {
+		"https://github.com/chromium/octane/blob/master/crypto.js",
+	},
+	"MIT-advertising": {
+		"https://fedoraproject.org/wiki/Licensing/MIT_With_Advertising",
+	},
+	"MIT-enna": {
+		"https://fedoraproject.org/wiki/Licensing/MIT#enna",
+	},
+	"MIT-feh": {
+		"https://fedoraproject.org/wiki/Licensing/MIT#feh",
+	},
+	"MIT-open-group": {
+		"https://gitlab.freedesktop.org/xorg/app/iceauth/-/blob/master/COPYING",
+		"https://gitlab.freedesktop.org/xorg/app/xsetroot/-/blob/master/COPYING",
+		"https://gitlab.freedesktop.org/xorg/app/xauth/-/blob/master/COPYING",
+	},
+	"MIT-testregex": {
+		"https://github.com/dotnet/runtime/blob/55e1ac7c07df62c4108d4acedf78f77574470ce5/src/libraries/System.Text.RegularExpressions/tests/FunctionalTests/AttRegexTests.cs#L12-L28",
+	},
+	"MITNFA": {
+		"https://fedoraproject.org/wiki/Licensing/MITNFA",
+	},
+	"MMIXware": {
+		"https://gitlab.lrz.de/mmix/mmixware/-/blob/master/boilerplate.w",
+	},
+	"MPEG-SSG": {
+		"https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/converter/ppm/ppmtompeg/jrevdct.c#l1189",
+	},
+	"MPL-1.0": {
+		"http://www.mozilla.org/MPL/MPL-1.0.html",
+		"https://opensource.org/licenses/MPL-1.0",
+	},
+	"MPL-1.1": {
+		"http://www.mozilla.org/MPL/MPL-1.1.html",
+		"https://opensource.org/licenses/MPL-1.1",
+	},
+	"MPL-2.0": {
+		"https://www.mozilla.org/MPL/2.0/",
+		"https://opensource.org/licenses/MPL-2.0",
+	},
+	"MPL-2.0-no-copyleft-exception": {
+		"https://www.mozilla.org/MPL/2.0/",
+		"https://opensource.org/licenses/MPL-2.0",
+	},
+	"MS-LPL": {
+		"https://www.openhub.net/licenses/mslpl",
+		"https://github.com/gabegundy/atlserver/blob/master/License.txt",
+		"https://en.wikipedia.org/wiki/Shared_Source_Initiative#Microsoft_Limited_Public_License_(Ms-LPL)",
+	},
+	"MS-PL": {
+		"http://www.microsoft.com/opensource/licenses.mspx",
+		"https://opensource.org/licenses/MS-PL",
+	},
+	"MS-RL": {
+		"http://www.microsoft.com/opensource/licenses.mspx",
+		"https://opensource.org/licenses/MS-RL",
+	},
+	"MTLL": {
+		"https://fedoraproject.org/wiki/Licensing/Matrix_Template_Library_License",
+	},
+	"Mackerras-3-Clause": {
+		"https://github.com/ppp-project/ppp/blob/master/pppd/chap_ms.c#L6-L28",
+	},
+	"Mackerras-3-Clause-acknowledgment": {
+		"https://github.com/ppp-project/ppp/blob/master/pppd/auth.c#L6-L28",
+	},
+	"MakeIndex": {
+		"https://fedoraproject.org/wiki/Licensing/MakeIndex",
+	},
+	"Martin-Birgmeier": {
+		"https://github.com/Perl/perl5/blob/blead/util.c#L6136",
+	},
+	"McPhee-slideshow": {
+		"https://mirror.las.iastate.edu/tex-archive/graphics/metapost/contrib/macros/slideshow/slideshow.mp",
+	},
+	"Minpack": {
+		"http://www.netlib.org/minpack/disclaimer",
+		"https://gitlab.com/libeigen/eigen/-/blob/master/COPYING.MINPACK",
+	},
+	"MirOS": {
+		"https://opensource.org/licenses/MirOS",
+	},
+	"Motosoto": {
+		"https://opensource.org/licenses/Motosoto",
+	},
+	"MulanPSL-1.0": {
+		"https://license.coscl.org.cn/MulanPSL/",
+		"https://github.com/yuwenlong/longphp/blob/25dfb70cc2a466dc4bb55ba30901cbce08d164b5/LICENSE",
+	},
+	"MulanPSL-2.0": {
+		"https://license.coscl.org.cn/MulanPSL2",
+	},
+	"Multics": {
+		"https://opensource.org/licenses/Multics",
+	},
+	"Mup": {
+		"https://fedoraproject.org/wiki/Licensing/Mup",
+	},
+	"NAIST-2003": {
+		"https://enterprise.dejacode.com/licenses/public/naist-2003/#license-text",
+		"https://github.com/nodejs/node/blob/4a19cc8947b1bba2b2d27816ec3d0edf9b28e503/LICENSE#L343",
+	},
+	"NASA-1.3": {
+		"http://ti.arc.nasa.gov/opensource/nosa/",
+		"https://opensource.org/licenses/NASA-1.3",
+	},
+	"NBPL-1.0": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=37b4b3f6cc4bf34e1d3dec61e69914b9819d8894",
+	},
+	"NCBI-PD": {
+		"https://github.com/ncbi/sra-tools/blob/e8e5b6af4edc460156ad9ce5902d0779cffbf685/LICENSE",
+		"https://github.com/ncbi/datasets/blob/0ea4cd16b61e5b799d9cc55aecfa016d6c9bd2bf/LICENSE.md",
+		"https://github.com/ncbi/gprobe/blob/de64d30fee8b4c4013094d7d3139ea89b5dd1ace/LICENSE",
+		"https://github.com/ncbi/egapx/blob/08930b9dec0c69b2d1a05e5153c7b95ef0a3eb0f/LICENSE",
+		"https://github.com/ncbi/datasets/blob/master/LICENSE.md",
+	},
+	"NCGL-UK-2.0": {
+		"http://www.nationalarchives.gov.uk/doc/non-commercial-government-licence/version/2/",
+	},
+	"NCL": {
+		"https://gitlab.freedesktop.org/pipewire/pipewire/-/blob/master/src/modules/module-filter-chain/pffft.c?ref_type=heads#L1-52",
+	},
+	"NCSA": {
+		"http://otm.illinois.edu/uiuc_openSource",
+		"https://opensource.org/licenses/NCSA",
+	},
+	"NGPL": {
+		"https://opensource.org/licenses/NGPL",
+	},
+	"NICTA-1.0": {
+		"https://opensource.apple.com/source/mDNSResponder/mDNSResponder-320.10/mDNSPosix/nss_ReadMe.txt",
+	},
+	"NIST-PD": {
+		"https://github.com/tcheneau/simpleRPL/blob/e645e69e38dd4e3ccfeceb2db8cba05b7c2e0cd3/LICENSE.txt",
+		"https://github.com/tcheneau/Routing/blob/f09f46fcfe636107f22f2c98348188a65a135d98/README.md",
+	},
+	"NIST-PD-fallback": {
+		"https://github.com/usnistgov/jsip/blob/59700e6926cbe96c5cdae897d9a7d2656b42abe3/LICENSE",
+		"https://github.com/usnistgov/fipy/blob/86aaa5c2ba2c6f1be19593c5986071cf6568cc34/LICENSE.rst",
+	},
+	"NIST-Software": {
+		"https://github.com/open-quantum-safe/liboqs/blob/40b01fdbb270f8614fde30e65d30e9da18c02393/src/common/rand/rand_nist.c#L1-L15",
+	},
+	"NLOD-1.0": {
+		"http://data.norge.no/nlod/en/1.0",
+	},
+	"NLOD-2.0": {
+		"http://data.norge.no/nlod/en/2.0",
+	},
+	"NLPL": {
+		"https://fedoraproject.org/wiki/Licensing/NLPL",
+	},
+	"NOSL": {
+		"http://bits.netizen.com.au/licenses/NOSL/nosl.txt",
+	},
+	"NPL-1.0": {
+		"http://www.mozilla.org/MPL/NPL/1.0/",
+	},
+	"NPL-1.1": {
+		"http://www.mozilla.org/MPL/NPL/1.1/",
+	},
+	"NPOSL-3.0": {
+		"https://opensource.org/licenses/NOSL3.0",
+	},
+	"NRL": {
+		"http://web.mit.edu/network/isakmp/nrllicense.html",
+	},
+	"NTIA-PD": {
+		"https://raw.githubusercontent.com/NTIA/itm/refs/heads/master/LICENSE.md",
+		"https://raw.githubusercontent.com/NTIA/scos-sensor/refs/heads/master/LICENSE.md",
+	},
+	"NTP": {
+		"https://opensource.org/licenses/NTP",
+	},
+	"NTP-0": {
+		"https://github.com/tytso/e2fsprogs/blob/master/lib/et/et_name.c",
+	},
+	"Naumen": {
+		"https://opensource.org/licenses/Naumen",
+	},
+	"Net-SNMP": {
+		"http://net-snmp.sourceforge.net/about/license.html",
+	},
+	"NetCDF": {
+		"http://www.unidata.ucar.edu/software/netcdf/copyright.html",
+	},
+	"Newsletr": {
+		"https://fedoraproject.org/wiki/Licensing/Newsletr",
+	},
+	"Nokia": {
+		"https://opensource.org/licenses/nokia",
+	},
+	"Noweb": {
+		"https://fedoraproject.org/wiki/Licensing/Noweb",
+	},
+	"Nunit": {
+		"https://fedoraproject.org/wiki/Licensing/Nunit",
+	},
+	"O-UDA-1.0": {
+		"https://github.com/microsoft/Open-Use-of-Data-Agreement/blob/v1.0/O-UDA-1.0.md",
+		"https://cdla.dev/open-use-of-data-agreement-v1-0/",
+	},
+	"OAR": {
+		"https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/string/strsignal.c;hb=HEAD#l35",
+	},
+	"OCCT-PL": {
+		"http://www.opencascade.com/content/occt-public-license",
+	},
+	"OCLC-2.0": {
+		"http://www.oclc.org/research/activities/software/license/v2final.htm",
+		"https://opensource.org/licenses/OCLC-2.0",
+	},
+	"ODC-By-1.0": {
+		"https://opendatacommons.org/licenses/by/1.0/",
+	},
+	"ODbL-1.0": {
+		"http://www.opendatacommons.org/licenses/odbl/1.0/",
+		"https://opendatacommons.org/licenses/odbl/1-0/",
+	},
+	"OFFIS": {
+		"https://sourceforge.net/p/xmedcon/code/ci/master/tree/libs/dicom/README",
+	},
+	"OFL-1.0": {
+		"http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web",
+	},
+	"OFL-1.0-RFN": {
+		"http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web",
+	},
+	"OFL-1.0-no-RFN": {
+		"http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web",
+	},
+	"OFL-1.1": {
+		"http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web",
+		"https://opensource.org/licenses/OFL-1.1",
+	},
+	"OFL-1.1-RFN": {
+		"http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web",
+		"https://opensource.org/licenses/OFL-1.1",
+	},
+	"OFL-1.1-no-RFN": {
+		"http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web",
+		"https://opensource.org/licenses/OFL-1.1",
+	},
+	"OGC-1.0": {
+		"https://www.ogc.org/ogc/software/1.0",
+	},
+	"OGDL-Taiwan-1.0": {
+		"https://data.gov.tw/license",
+	},
+	"OGL-Canada-2.0": {
+		"https://open.canada.ca/en/open-government-licence-canada",
+	},
+	"OGL-UK-1.0": {
+		"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+	},
+	"OGL-UK-2.0": {
+		"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/",
+	},
+	"OGL-UK-3.0": {
+		"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+	},
+	"OGTSL": {
+		"http://www.opengroup.org/testing/downloads/The_Open_Group_TSL.txt",
+		"https://opensource.org/licenses/OGTSL",
+	},
+	"OLDAP-1.1": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=806557a5ad59804ef3a44d5abfbe91d706b0791f",
+	},
+	"OLDAP-1.2": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=42b0383c50c299977b5893ee695cf4e486fb0dc7",
+	},
+	"OLDAP-1.3": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=e5f8117f0ce088d0bd7a8e18ddf37eaa40eb09b1",
+	},
+	"OLDAP-1.4": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=c9f95c2f3f2ffb5e0ae55fe7388af75547660941",
+	},
+	"OLDAP-2.0": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=cbf50f4e1185a21abd4c0a54d3f4341fe28f36ea",
+	},
+	"OLDAP-2.0.1": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=b6d68acd14e51ca3aab4428bf26522aa74873f0e",
+	},
+	"OLDAP-2.1": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=b0d176738e96a0d3b9f85cb51e140a86f21be715",
+	},
+	"OLDAP-2.2": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=470b0c18ec67621c85881b2733057fecf4a1acc3",
+	},
+	"OLDAP-2.2.1": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=4bc786f34b50aa301be6f5600f58a980070f481e",
+	},
+	"OLDAP-2.2.2": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=df2cc1e21eb7c160695f5b7cffd6296c151ba188",
+	},
+	"OLDAP-2.3": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=d32cf54a32d581ab475d23c810b0a7fbaf8d63c3",
+	},
+	"OLDAP-2.4": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=cd1284c4a91a8a380d904eee68d1583f989ed386",
+	},
+	"OLDAP-2.5": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=6852b9d90022e8593c98205413380536b1b5a7cf",
+	},
+	"OLDAP-2.6": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=1cae062821881f41b73012ba816434897abf4205",
+	},
+	"OLDAP-2.7": {
+		"http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=47c2415c1df81556eeb39be6cad458ef87c534a2",
+	},
+	"OLDAP-2.8": {
+		"http://www.openldap.org/software/release/license.html",
+	},
+	"OLFL-1.3": {
+		"https://openlogisticsfoundation.org/licenses/",
+		"https://opensource.org/license/olfl-1-3/",
+	},
+	"OML": {
+		"https://fedoraproject.org/wiki/Licensing/Open_Market_License",
+	},
+	"OPL-1.0": {
+		"http://old.koalateam.com/jackaroo/OPL_1_0.TXT",
+		"https://fedoraproject.org/wiki/Licensing/Open_Public_License",
+	},
+	"OPL-UK-3.0": {
+		"https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/",
+	},
+	"OPUBL-1.0": {
+		"http://opencontent.org/openpub/",
+		"https://www.debian.org/opl",
+		"https://www.ctan.org/license/opl",
+	},
+	"OSET-PL-2.1": {
+		"http://www.osetfoundation.org/public-license",
+		"https://opensource.org/licenses/OPL-2.1",
+	},
+	"OSL-1.0": {
+		"https://opensource.org/licenses/OSL-1.0",
+	},
+	"OSL-1.1": {
+		"https://fedoraproject.org/wiki/Licensing/OSL1.1",
+	},
+	"OSL-2.0": {
+		"http://web.archive.org/web/20041020171434/http://www.rosenlaw.com/osl2.0.html",
+	},
+	"OSL-2.1": {
+		"http://web.archive.org/web/20050212003940/http://www.rosenlaw.com/osl21.htm",
+		"https://opensource.org/licenses/OSL-2.1",
+	},
+	"OSL-3.0": {
+		"https://web.archive.org/web/20120101081418/http://rosenlaw.com:80/OSL3.0.htm",
+		"https://opensource.org/licenses/OSL-3.0",
+	},
+	"OpenPBS-2.3": {
+		"https://github.com/adaptivecomputing/torque/blob/master/PBS_License.txt",
+		"https://www.mcs.anl.gov/research/projects/openpbs/PBS_License.txt",
+	},
+	"OpenSSL": {
+		"http://www.openssl.org/source/license.html",
+	},
+	"OpenSSL-standalone": {
+		"https://library.netapp.com/ecm/ecm_download_file/ECMP1196395",
+		"https://hstechdocs.helpsystems.com/manuals/globalscape/archive/cuteftp6/open_ssl_license_agreement.htm",
+	},
+	"OpenVision": {
+		"https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L66-L98",
+		"https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+		"https://fedoraproject.org/wiki/Licensing:MIT#OpenVision_Variant",
+	},
+	"PADL": {
+		"https://git.openldap.org/openldap/openldap/-/blob/master/libraries/libldap/os-local.c?ref_type=heads#L19-23",
+	},
+	"PDDL-1.0": {
+		"http://opendatacommons.org/licenses/pddl/1.0/",
+		"https://opendatacommons.org/licenses/pddl/",
+	},
+	"PHP-3.0": {
+		"http://www.php.net/license/3_0.txt",
+		"https://opensource.org/licenses/PHP-3.0",
+	},
+	"PHP-3.01": {
+		"http://www.php.net/license/3_01.txt",
+	},
+	"PPL": {
+		"https://wiki.p2pfoundation.net/Peer_Production_License",
+		"http://www.networkcultures.org/_uploads/%233notebook_telekommunist.pdf",
+	},
+	"PSF-2.0": {
+		"https://opensource.org/licenses/Python-2.0",
+		"https://matplotlib.org/stable/project/license.html",
+	},
+	"Parity-6.0.0": {
+		"https://paritylicense.com/versions/6.0.0.html",
+	},
+	"Parity-7.0.0": {
+		"https://paritylicense.com/versions/7.0.0.html",
+	},
+	"Pixar": {
+		"https://github.com/PixarAnimationStudios/OpenSubdiv/raw/v3_5_0/LICENSE.txt",
+		"https://graphics.pixar.com/opensubdiv/docs/license.html",
+		"https://github.com/PixarAnimationStudios/OpenSubdiv/blob/v3_5_0/opensubdiv/version.cpp#L2-L22",
+	},
+	"Plexus": {
+		"https://fedoraproject.org/wiki/Licensing/Plexus_Classworlds_License",
+	},
+	"PolyForm-Noncommercial-1.0.0": {
+		"https://polyformproject.org/licenses/noncommercial/1.0.0",
+	},
+	"PolyForm-Small-Business-1.0.0": {
+		"https://polyformproject.org/licenses/small-business/1.0.0",
+	},
+	"PostgreSQL": {
+		"http://www.postgresql.org/about/licence",
+		"https://opensource.org/licenses/PostgreSQL",
+	},
+	"Python-2.0": {
+		"https://opensource.org/licenses/Python-2.0",
+	},
+	"Python-2.0.1": {
+		"https://www.python.org/download/releases/2.0.1/license/",
+		"https://docs.python.org/3/license.html",
+		"https://github.com/python/cpython/blob/main/LICENSE",
+	},
+	"QPL-1.0": {
+		"http://doc.qt.nokia.com/3.3/license.html",
+		"https://opensource.org/licenses/QPL-1.0",
+		"https://doc.qt.io/archives/3.3/license.html",
+	},
+	"QPL-1.0-INRIA-2004": {
+		"https://github.com/maranget/hevea/blob/master/LICENSE",
+	},
+	"Qhull": {
+		"https://fedoraproject.org/wiki/Licensing/Qhull",
+	},
+	"RHeCos-1.1": {
+		"http://ecos.sourceware.org/old-license.html",
+	},
+	"RPL-1.1": {
+		"https://opensource.org/licenses/RPL-1.1",
+	},
+	"RPL-1.5": {
+		"https://opensource.org/licenses/RPL-1.5",
+	},
+	"RPSL-1.0": {
+		"https://helixcommunity.org/content/rpsl",
+		"https://opensource.org/licenses/RPSL-1.0",
+	},
+	"RSA-MD": {
+		"http://www.faqs.org/rfcs/rfc1321.html",
+	},
+	"RSCPL": {
+		"http://wayback.archive.org/web/20060715140826/http://www.risource.org/RPL/RPL-1.0A.shtml",
+		"https://opensource.org/licenses/RSCPL",
+	},
+	"Rdisc": {
+		"https://fedoraproject.org/wiki/Licensing/Rdisc_License",
+	},
+	"Ruby": {
+		"https://www.ruby-lang.org/en/about/license.txt",
+	},
+	"Ruby-pty": {
+		"https://github.com/ruby/ruby/blob/9f6deaa6888a423720b4b127b5314f0ad26cc2e6/ext/pty/pty.c#L775-L786",
+		"https://github.com/ruby/ruby/commit/0a64817fb80016030c03518fb9459f63c11605ea#diff-ef5fa30838d6d0cecad9e675cc50b24628cfe2cb277c346053fafcc36c91c204",
+		"https://github.com/ruby/ruby/commit/0a64817fb80016030c03518fb9459f63c11605ea#diff-fedf217c1ce44bda01f0a678d3ff8b198bed478754d699c527a698ad933979a0",
+	},
+	"SAX-PD": {
+		"http://www.saxproject.org/copying.html",
+	},
+	"SAX-PD-2.0": {
+		"http://www.saxproject.org/copying.html",
+	},
+	"SCEA": {
+		"http://research.scea.com/scea_shared_source_license.html",
+	},
+	"SGI-B-1.0": {
+		"http://oss.sgi.com/projects/FreeB/SGIFreeSWLicB.1.0.html",
+	},
+	"SGI-B-1.1": {
+		"http://oss.sgi.com/projects/FreeB/",
+	},
+	"SGI-B-2.0": {
+		"http://oss.sgi.com/projects/FreeB/SGIFreeSWLicB.2.0.pdf",
+	},
+	"SGI-OpenGL": {
+		"https://gitlab.freedesktop.org/mesa/glw/-/blob/master/README?ref_type=heads",
+	},
+	"SGP4": {
+		"https://celestrak.org/publications/AIAA/2006-6753/faq.php",
+	},
+	"SHL-0.5": {
+		"https://solderpad.org/licenses/SHL-0.5/",
+	},
+	"SHL-0.51": {
+		"https://solderpad.org/licenses/SHL-0.51/",
+	},
+	"SISSL": {
+		"http://www.openoffice.org/licenses/sissl_license.html",
+		"https://opensource.org/licenses/SISSL",
+	},
+	"SISSL-1.2": {
+		"http://gridscheduler.sourceforge.net/Gridengine_SISSL_license.html",
+	},
+	"SL": {
+		"https://github.com/mtoyoda/sl/blob/master/LICENSE",
+	},
+	"SMAIL-GPL": {
+		"https://sources.debian.org/copyright/license/debianutils/4.11.2/",
+	},
+	"SMLNJ": {
+		"https://www.smlnj.org/license.html",
+	},
+	"SMPPL": {
+		"https://github.com/dcblake/SMP/blob/master/Documentation/License.txt",
+	},
+	"SNIA": {
+		"https://fedoraproject.org/wiki/Licensing/SNIA_Public_License",
+	},
+	"SOFA": {
+		"http://www.iausofa.org/tandc.html",
+	},
+	"SPL-1.0": {
+		"https://opensource.org/licenses/SPL-1.0",
+	},
+	"SSH-OpenSSH": {
+		"https://github.com/openssh/openssh-portable/blob/1b11ea7c58cd5c59838b5fa574cd456d6047b2d4/LICENCE#L10",
+	},
+	"SSH-short": {
+		"https://github.com/openssh/openssh-portable/blob/1b11ea7c58cd5c59838b5fa574cd456d6047b2d4/pathnames.h",
+		"http://web.mit.edu/kolya/.f/root/athena.mit.edu/sipb.mit.edu/project/openssh/OldFiles/src/openssh-2.9.9p2/ssh-add.1",
+		"https://joinup.ec.europa.eu/svn/lesoll/trunk/italc/lib/src/dsa_key.cpp",
+	},
+	"SSLeay-standalone": {
+		"https://www.tq-group.com/filedownloads/files/software-license-conditions/OriginalSSLeay/OriginalSSLeay.pdf",
+	},
+	"SSPL-1.0": {
+		"https://www.mongodb.com/licensing/server-side-public-license",
+	},
+	"SUL-1.0": {
+		"https://github.com/n8n-io/n8n/blob/master/LICENSE.md",
+	},
+	"SWL": {
+		"https://fedoraproject.org/wiki/Licensing/SWL",
+	},
+	"Saxpath": {
+		"https://fedoraproject.org/wiki/Licensing/Saxpath_License",
+	},
+	"Sendmail": {
+		"http://www.sendmail.com/pdfs/open_source/sendmail_license.pdf",
+		"https://web.archive.org/web/20160322142305/https://www.sendmail.com/pdfs/open_source/sendmail_license.pdf",
+	},
+	"Sendmail-8.23": {
+		"https://www.proofpoint.com/sites/default/files/sendmail-license.pdf",
+		"https://web.archive.org/web/20181003101040/https://www.proofpoint.com/sites/default/files/sendmail-license.pdf",
+	},
+	"Sendmail-Open-Source-1.1": {
+		"https://github.com/trusteddomainproject/OpenDMARC/blob/master/LICENSE.Sendmail",
+	},
+	"SimPL-2.0": {
+		"https://opensource.org/licenses/SimPL-2.0",
+	},
+	"Sleepycat": {
+		"https://opensource.org/licenses/Sleepycat",
+	},
+	"Soundex": {
+		"https://metacpan.org/release/RJBS/Text-Soundex-3.05/source/Soundex.pm#L3-11",
+	},
+	"Spencer-86": {
+		"https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License",
+	},
+	"Spencer-94": {
+		"https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License",
+		"https://metacpan.org/release/KNOK/File-MMagic-1.30/source/COPYING#L28",
+	},
+	"Spencer-99": {
+		"http://www.opensource.apple.com/source/tcl/tcl-5/tcl/generic/regfronts.c",
+	},
+	"SugarCRM-1.1.3": {
+		"http://www.sugarcrm.com/crm/SPL",
+	},
+	"Sun-PPP": {
+		"https://github.com/ppp-project/ppp/blob/master/pppd/eap.c#L7-L16",
+	},
+	"Sun-PPP-2000": {
+		"https://github.com/ppp-project/ppp/blob/master/modules/ppp_ahdlc.c#L7-L19",
+	},
+	"SunPro": {
+		"https://github.com/freebsd/freebsd-src/blob/main/lib/msun/src/e_acosh.c",
+		"https://github.com/freebsd/freebsd-src/blob/main/lib/msun/src/e_lgammal.c",
+	},
+	"Symlinks": {
+		"https://www.mail-archive.com/debian-bugs-rc@lists.debian.org/msg11494.html",
+	},
+	"TAPR-OHL-1.0": {
+		"https://www.tapr.org/OHL",
+	},
+	"TCL": {
+		"http://www.tcl.tk/software/tcltk/license.html",
+		"https://fedoraproject.org/wiki/Licensing/TCL",
+	},
+	"TCP-wrappers": {
+		"http://rc.quest.com/topics/openssh/license.php#tcpwrappers",
+	},
+	"TGPPL-1.0": {
+		"https://fedoraproject.org/wiki/Licensing/TGPPL",
+		"https://tahoe-lafs.org/trac/tahoe-lafs/browser/trunk/COPYING.TGPPL.rst",
+	},
+	"TMate": {
+		"http://svnkit.com/license.html",
+	},
+	"TORQUE-1.1": {
+		"https://fedoraproject.org/wiki/Licensing/TORQUEv1.1",
+	},
+	"TOSL": {
+		"https://fedoraproject.org/wiki/Licensing/TOSL",
+	},
+	"TPDL": {
+		"https://metacpan.org/pod/Time::ParseDate#LICENSE",
+	},
+	"TPL-1.0": {
+		"https://fedoraproject.org/wiki/Licensing:ThorPublicLicense",
+	},
+	"TTWL": {
+		"https://fedoraproject.org/wiki/Licensing/TTWL",
+		"https://github.com/ap/Text-Tabs/blob/master/lib.modern/Text/Tabs.pm#L148",
+	},
+	"TTYP0": {
+		"https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/",
+	},
+	"TU-Berlin-1.0": {
+		"https://github.com/swh/ladspa/blob/7bf6f3799fdba70fda297c2d8fd9f526803d9680/gsm/COPYRIGHT",
+	},
+	"TU-Berlin-2.0": {
+		"https://github.com/CorsixTH/deps/blob/fd339a9f526d1d9c9f01ccf39e438a015da50035/licences/libgsm.txt",
+	},
+	"TermReadKey": {
+		"https://github.com/jonathanstowe/TermReadKey/blob/master/README#L9-L10",
+	},
+	"ThirdEye": {
+		"https://sourceware.org/cgit/binutils-gdb/tree/include/coff/symconst.h#n11",
+	},
+	"TrustedQSL": {
+		"https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/LICENSE.txt",
+	},
+	"UCAR": {
+		"https://github.com/Unidata/UDUNITS-2/blob/master/COPYRIGHT",
+	},
+	"UCL-1.0": {
+		"https://opensource.org/licenses/UCL-1.0",
+	},
+	"UMich-Merit": {
+		"https://github.com/radcli/radcli/blob/master/COPYRIGHT#L64",
+	},
+	"UPL-1.0": {
+		"https://opensource.org/licenses/UPL",
+	},
+	"URT-RLE": {
+		"https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/converter/other/pnmtorle.c",
+		"https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/converter/other/rletopnm.c",
+	},
+	"Ubuntu-font-1.0": {
+		"https://ubuntu.com/legal/font-licence",
+		"https://assets.ubuntu.com/v1/81e5605d-ubuntu-font-licence-1.0.txt",
+	},
+	"Unicode-3.0": {
+		"https://www.unicode.org/license.txt",
+	},
+	"Unicode-DFS-2015": {
+		"https://web.archive.org/web/20151224134844/http://unicode.org/copyright.html",
+	},
+	"Unicode-DFS-2016": {
+		"https://www.unicode.org/license.txt",
+		"http://web.archive.org/web/20160823201924/http://www.unicode.org/copyright.html#License",
+		"http://www.unicode.org/copyright.html",
+	},
+	"Unicode-TOU": {
+		"http://web.archive.org/web/20140704074106/http://www.unicode.org/copyright.html",
+		"http://www.unicode.org/copyright.html",
+	},
+	"UnixCrypt": {
+		"https://foss.heptapod.net/python-libs/passlib/-/blob/branch/stable/LICENSE#L70",
+		"https://opensource.apple.com/source/JBoss/JBoss-737/jboss-all/jetty/src/main/org/mortbay/util/UnixCrypt.java.auto.html",
+		"https://archive.eclipse.org/jetty/8.0.1.v20110908/xref/org/eclipse/jetty/http/security/UnixCrypt.html",
+	},
+	"Unlicense": {
+		"https://unlicense.org/",
+	},
+	"Unlicense-libtelnet": {
+		"https://github.com/seanmiddleditch/libtelnet/blob/develop/COPYING",
+	},
+	"Unlicense-libwhirlpool": {
+		"https://github.com/dfateyev/libwhirlpool/blob/master/README#L27",
+	},
+	"VOSTROM": {
+		"https://fedoraproject.org/wiki/Licensing/VOSTROM",
+	},
+	"VSL-1.0": {
+		"https://opensource.org/licenses/VSL-1.0",
+	},
+	"Vim": {
+		"http://vimdoc.sourceforge.net/htmldoc/uganda.html",
+	},
+	"W3C": {
+		"http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231.html",
+		"https://opensource.org/licenses/W3C",
+	},
+	"W3C-19980720": {
+		"http://www.w3.org/Consortium/Legal/copyright-software-19980720.html",
+	},
+	"W3C-20150513": {
+		"https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+		"https://www.w3.org/copyright/software-license-2015/",
+		"https://www.w3.org/copyright/software-license-2023/",
+	},
+	"WTFPL": {
+		"http://www.wtfpl.net/about/",
+		"http://sam.zoy.org/wtfpl/COPYING",
+	},
+	"Watcom-1.0": {
+		"https://opensource.org/licenses/Watcom-1.0",
+	},
+	"Widget-Workshop": {
+		"https://github.com/novnc/noVNC/blob/master/core/crypto/des.js#L24",
+	},
+	"Wsuipa": {
+		"https://fedoraproject.org/wiki/Licensing/Wsuipa",
+	},
+	"X11": {
+		"http://www.xfree86.org/3.3.6/COPYRIGHT2.html#3",
+	},
+	"X11-distribute-modifications-variant": {
+		"https://github.com/mirror/ncurses/blob/master/COPYING",
+	},
+	"X11-swapped": {
+		"https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/LICENSE",
+	},
+	"XFree86-1.1": {
+		"http://www.xfree86.org/current/LICENSE4.html",
+	},
+	"XSkat": {
+		"https://fedoraproject.org/wiki/Licensing/XSkat_License",
+	},
+	"Xdebug-1.03": {
+		"https://github.com/xdebug/xdebug/blob/master/LICENSE",
+	},
+	"Xerox": {
+		"https://fedoraproject.org/wiki/Licensing/Xerox",
+	},
+	"Xfig": {
+		"https://github.com/Distrotech/transfig/blob/master/transfig/transfig.c",
+		"https://fedoraproject.org/wiki/Licensing:MIT#Xfig_Variant",
+		"https://sourceforge.net/p/mcj/xfig/ci/master/tree/src/Makefile.am",
+	},
+	"Xnet": {
+		"https://opensource.org/licenses/Xnet",
+	},
+	"YPL-1.0": {
+		"http://www.zimbra.com/license/yahoo_public_license_1.0.html",
+	},
+	"YPL-1.1": {
+		"http://www.zimbra.com/license/yahoo_public_license_1.1.html",
+	},
+	"ZPL-1.1": {
+		"http://old.zope.org/Resources/License/ZPL-1.1",
+	},
+	"ZPL-2.0": {
+		"http://old.zope.org/Resources/License/ZPL-2.0",
+		"https://opensource.org/licenses/ZPL-2.0",
+	},
+	"ZPL-2.1": {
+		"http://old.zope.org/Resources/ZPL/",
+	},
+	"Zed": {
+		"https://fedoraproject.org/wiki/Licensing/Zed",
+	},
+	"Zeeff": {
+		"ftp://ftp.tin.org/pub/news/utils/newsx/newsx-1.6.tar.gz",
+	},
+	"Zend-2.0": {
+		"https://web.archive.org/web/20130517195954/http://www.zend.com/license/2_00.txt",
+	},
+	"Zimbra-1.3": {
+		"http://web.archive.org/web/20100302225219/http://www.zimbra.com/license/zimbra-public-license-1-3.html",
+	},
+	"Zimbra-1.4": {
+		"http://www.zimbra.com/legal/zimbra-public-license-1-4",
+	},
+	"Zlib": {
+		"http://www.zlib.net/zlib_license.html",
+		"https://opensource.org/licenses/Zlib",
+	},
+	"any-OSI": {
+		"https://metacpan.org/pod/Exporter::Tidy#LICENSE",
+	},
+	"any-OSI-perl-modules": {
+		"https://metacpan.org/release/JUERD/Exporter-Tidy-0.09/view/Tidy.pm#LICENSE",
+		"https://metacpan.org/pod/Qmail::Deliverable::Client#LICENSE",
+		"https://metacpan.org/pod/Net::MQTT::Simple#LICENSE",
+	},
+	"bcrypt-Solar-Designer": {
+		"https://github.com/bcrypt-ruby/bcrypt-ruby/blob/master/ext/mri/crypt_blowfish.c",
+	},
+	"blessing": {
+		"https://www.sqlite.org/src/artifact/e33a4df7e32d742a?ln=4-9",
+		"https://sqlite.org/src/artifact/df5091916dbb40e6",
+	},
+	"bzip2-1.0.6": {
+		"https://sourceware.org/git/?p=bzip2.git;a=blob;f=LICENSE;hb=bzip2-1.0.6",
+		"http://bzip.org/1.0.5/bzip2-manual-1.0.5.html",
+		"https://sourceware.org/cgit/valgrind/tree/mpi/libmpiwrap.c",
+		"https://sourceware.org/bzip2/1.0.5/bzip2-manual-1.0.5.html",
+	},
+	"check-cvs": {
+		"http://cvs.savannah.gnu.org/viewvc/cvs/ccvs/contrib/check_cvs.in?revision=1.1.4.3&view=markup&pathrev=cvs1-11-23#l2",
+	},
+	"checkmk": {
+		"https://github.com/libcheck/check/blob/master/checkmk/checkmk.in",
+	},
+	"copyleft-next-0.3.0": {
+		"https://github.com/copyleft-next/copyleft-next/blob/master/Releases/copyleft-next-0.3.0",
+	},
+	"copyleft-next-0.3.1": {
+		"https://github.com/copyleft-next/copyleft-next/blob/master/Releases/copyleft-next-0.3.1",
+	},
+	"curl": {
+		"https://github.com/bagder/curl/blob/master/COPYING",
+	},
+	"cve-tou": {
+		"https://www.cve.org/Legal/TermsOfUse",
+	},
+	"diffmark": {
+		"https://fedoraproject.org/wiki/Licensing/diffmark",
+	},
+	"dtoa": {
+		"https://github.com/SWI-Prolog/swipl-devel/blob/master/src/os/dtoa.c",
+		"https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/stdlib/mprec.h;hb=HEAD",
+	},
+	"dvipdfm": {
+		"https://fedoraproject.org/wiki/Licensing/dvipdfm",
+	},
+	"eCos-2.0": {
+		"https://www.gnu.org/licenses/ecos-license.html",
+	},
+	"eGenix": {
+		"http://www.egenix.com/products/eGenix.com-Public-License-1.1.0.pdf",
+		"https://fedoraproject.org/wiki/Licensing/eGenix.com_Public_License_1.1.0",
+	},
+	"etalab-2.0": {
+		"https://github.com/DISIC/politique-de-contribution-open-source/blob/master/LICENSE.pdf",
+		"https://raw.githubusercontent.com/DISIC/politique-de-contribution-open-source/master/LICENSE",
+	},
+	"fwlw": {
+		"https://mirrors.nic.cz/tex-archive/macros/latex/contrib/fwlw/README",
+	},
+	"gSOAP-1.3b": {
+		"http://www.cs.fsu.edu/~engelen/license.html",
+	},
+	"generic-xts": {
+		"https://github.com/mhogomchungu/zuluCrypt/blob/master/external_libraries/tcplay/generic_xts.c",
+	},
+	"gnuplot": {
+		"https://fedoraproject.org/wiki/Licensing/Gnuplot",
+	},
+	"gtkbook": {
+		"https://github.com/slogan621/gtkbook",
+		"https://github.com/oetiker/rrdtool-1.x/blob/master/src/plbasename.c#L8-L11",
+	},
+	"hdparm": {
+		"https://github.com/Distrotech/hdparm/blob/4517550db29a91420fb2b020349523b1b4512df2/LICENSE.TXT",
+	},
+	"iMatix": {
+		"http://legacy.imatix.com/html/sfl/sfl4.htm#license",
+	},
+	"jove": {
+		"https://github.com/jonmacs/jove/blob/4_17/LICENSE",
+	},
+	"libpng-1.6.35": {
+		"http://www.libpng.org/pub/png/src/libpng-LICENSE.txt",
+	},
+	"libpng-2.0": {
+		"http://www.libpng.org/pub/png/src/libpng-LICENSE.txt",
+	},
+	"libselinux-1.0": {
+		"https://github.com/SELinuxProject/selinux/blob/master/libselinux/LICENSE",
+	},
+	"libtiff": {
+		"https://fedoraproject.org/wiki/Licensing/libtiff",
+	},
+	"libutil-David-Nugent": {
+		"http://web.mit.edu/freebsd/head/lib/libutil/login_ok.3",
+		"https://cgit.freedesktop.org/libbsd/tree/man/setproctitle.3bsd",
+	},
+	"lsof": {
+		"https://github.com/lsof-org/lsof/blob/master/COPYING",
+	},
+	"magaz": {
+		"https://mirrors.nic.cz/tex-archive/macros/latex/contrib/magaz/magaz.tex",
+		"https://mirrors.ctan.org/macros/latex/contrib/version/version.sty",
+	},
+	"mailprio": {
+		"https://fossies.org/linux/sendmail/contrib/mailprio",
+	},
+	"man2html": {
+		"http://primates.ximian.com/~flucifredi/man/man-1.6g.tar.gz",
+		"https://github.com/hamano/man2html/blob/master/man2html.c",
+		"https://docs.oracle.com/cd/E81115_01/html/E81116/licenses.html",
+	},
+	"metamail": {
+		"https://github.com/Dual-Life/mime-base64/blob/master/Base64.xs#L12",
+	},
+	"mpi-permissive": {
+		"https://sources.debian.org/src/openmpi/4.1.0-10/ompi/debuggers/msgq_interface.h/?hl=19#L19",
+	},
+	"mpich2": {
+		"https://fedoraproject.org/wiki/Licensing/MIT",
+	},
+	"mplus": {
+		"https://fedoraproject.org/wiki/Licensing:Mplus?rd=Licensing/mplus",
+	},
+	"ngrep": {
+		"https://github.com/jpr5/ngrep/blob/master/LICENSE",
+	},
+	"pkgconf": {
+		"https://github.com/pkgconf/pkgconf/blob/master/cli/main.c#L8",
+	},
+	"pnmstitch": {
+		"https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/editor/pnmstitch.c#l2",
+	},
+	"psfrag": {
+		"https://fedoraproject.org/wiki/Licensing/psfrag",
+	},
+	"psutils": {
+		"https://fedoraproject.org/wiki/Licensing/psutils",
+	},
+	"python-ldap": {
+		"https://github.com/python-ldap/python-ldap/blob/main/LICENCE",
+	},
+	"radvd": {
+		"https://github.com/radvd-project/radvd/blob/master/COPYRIGHT",
+	},
+	"snprintf": {
+		"https://github.com/openssh/openssh-portable/blob/master/openbsd-compat/bsd-snprintf.c#L2",
+	},
+	"softSurfer": {
+		"https://github.com/mm2/Little-CMS/blob/master/src/cmssm.c#L207",
+		"https://fedoraproject.org/wiki/Licensing/softSurfer",
+	},
+	"ssh-keyscan": {
+		"https://github.com/openssh/openssh-portable/blob/master/LICENCE#L82",
+	},
+	"swrule": {
+		"https://ctan.math.utah.edu/ctan/tex-archive/macros/generic/misc/swrule.sty",
+	},
+	"threeparttable": {
+		"https://fedoraproject.org/wiki/Licensing/Threeparttable",
+	},
+	"ulem": {
+		"https://mirrors.ctan.org/macros/latex/contrib/ulem/README",
+	},
+	"w3m": {
+		"https://github.com/tats/w3m/blob/master/COPYING",
+	},
+	"wwl": {
+		"http://www.db.net/downloads/wwl+db-1.3.tgz",
+	},
+	"wxWindows": {
+		"https://opensource.org/licenses/WXwindows",
+	},
+	"xinetd": {
+		"https://fedoraproject.org/wiki/Licensing/Xinetd_License",
+	},
+	"xkeyboard-config-Zinoviev": {
+		"https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/blob/master/COPYING?ref_type=heads#L178",
+	},
+	"xlock": {
+		"https://fossies.org/linux/tiff/contrib/ras/ras2tif.c",
+	},
+	"xpp": {
+		"https://fedoraproject.org/wiki/Licensing/xpp",
+	},
+	"xzoom": {
+		"https://metadata.ftp-master.debian.org/changelogs//main/x/xzoom/xzoom_0.3-27_copyright",
+	},
+	"zlib-acknowledgement": {
+		"https://fedoraproject.org/wiki/Licensing/ZlibWithAcknowledgement",
+	},
 }
 
 // urlToLicense maps license URLs from the seeAlso field to license IDs
