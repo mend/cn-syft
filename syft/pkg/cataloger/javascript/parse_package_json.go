@@ -6,7 +6,9 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"path/filepath"
 	"regexp"
+	"strings"
 
 	"github.com/mitchellh/mapstructure"
 
@@ -22,17 +24,18 @@ var _ generic.Parser = parsePackageJSON
 
 // packageJSON represents a JavaScript package.json file
 type packageJSON struct {
-	Version      string            `json:"version"`
-	Latest       []string          `json:"latest"`
-	Author       author            `json:"author"`
-	License      json.RawMessage   `json:"license"`
-	Licenses     json.RawMessage   `json:"licenses"`
-	Name         string            `json:"name"`
-	Homepage     string            `json:"homepage"`
-	Description  string            `json:"description"`
-	Dependencies map[string]string `json:"dependencies"`
-	Repository   repository        `json:"repository"`
-	Private      bool              `json:"private"`
+	Version         string            `json:"version"`
+	Latest          []string          `json:"latest"`
+	Author          author            `json:"author"`
+	License         json.RawMessage   `json:"license"`
+	Licenses        json.RawMessage   `json:"licenses"`
+	Name            string            `json:"name"`
+	Homepage        string            `json:"homepage"`
+	Description     string            `json:"description"`
+	Dependencies    map[string]string `json:"dependencies"`
+	DevDependencies map[string]string `json:"devDependencies"`
+	Repository      repository        `json:"repository"`
+	Private         bool              `json:"private"`
 }
 
 type author struct {
@@ -50,8 +53,9 @@ type repository struct {
 // ---> name: "Isaac Z. Schlueter" email: "i@izs.me" url: "http://blog.izs.me"
 var authorPattern = regexp.MustCompile(`^\s*(?P<name>[^<(]*)(\s+<(?P<email>.*)>)?(\s\((?P<url>.*)\))?\s*$`)
 
+
 // parsePackageJSON parses a package.json and returns the discovered JavaScript packages.
-func parsePackageJSON(_ context.Context, _ file.Resolver, _ *generic.Environment, reader file.LocationReadCloser) ([]pkg.Package, []artifact.Relationship, error) {
+func parsePackageJSON(_ context.Context, resolver file.Resolver, _ *generic.Environment, reader file.LocationReadCloser) ([]pkg.Package, []artifact.Relationship, error) {
 	var pkgs []pkg.Package
 	dec := json.NewDecoder(reader)
 
@@ -69,6 +73,9 @@ func parsePackageJSON(_ context.Context, _ file.Resolver, _ *generic.Environment
 			pkgs,
 			newPackageJSONPackage(p, reader.Location.WithAnnotation(pkg.EvidenceAnnotationKey, pkg.PrimaryEvidenceAnnotation)),
 		)
+
+		// Check if this package.json is from a bundler's dist directory and update missing versions
+		updateVersionsFromBundlerDevDependencies(p, reader.Location, resolver, pkgs)
 	}
 
 	pkg.Sort(pkgs)
@@ -199,14 +206,98 @@ func licensesFromJSON(b []byte) ([]npmPackageLicense, error) {
 	return nil, errors.New("unmarshal failed")
 }
 
-// this supports both windows and unix paths
-var filepathSeparator = regexp.MustCompile(`[\\/]`)
 
 func pathContainsNodeModulesDirectory(p string) bool {
-	for _, subPath := range filepathSeparator.Split(p, -1) {
-		if subPath == "node_modules" {
+	// Normalize path to use forward slashes and split by filepath separator
+	p = filepath.ToSlash(p)
+	parts := strings.Split(p, "/")
+	for _, part := range parts {
+		if part == "node_modules" {
 			return true
 		}
 	}
 	return false
+}
+
+// updateVersionsFromBundlerDevDependencies checks if this package.json is from a bundler's dist directory
+// and if so, updates the version of the current package from the parent package.json devDependencies
+func updateVersionsFromBundlerDevDependencies(p packageJSON, location file.Location, resolver file.Resolver, existingPkgs []pkg.Package) {
+	if p.Version != "" {
+		return
+	}
+
+	bundlerName, parentPackageJSONPath := parseBundlerPath(location.RealPath)
+	if bundlerName == "" {
+		return
+	}
+
+	parentPackageJSON := loadPackageJSON(parentPackageJSONPath, resolver)
+	if parentPackageJSON == nil {
+		return
+	}
+
+	// Look for the current package in the parent's devDependencies or npm aliases
+	if version, exists := parentPackageJSON.DevDependencies[p.Name]; exists && version != "" {
+		if len(existingPkgs) > 0 {
+			lastPkg := &existingPkgs[len(existingPkgs)-1]
+			if lastPkg.Name == p.Name && lastPkg.Version == "" {
+				lastPkg.Version = version
+				lastPkg.PURL = packageURL(p.Name, version)
+
+				if npmMeta, ok := lastPkg.Metadata.(pkg.NpmPackage); ok {
+					npmMeta.Version = version
+					lastPkg.Metadata = npmMeta
+				}
+			}
+		}
+	}
+}
+
+// parseBundlerPath checks if the path is in a bundler's dist directory and returns bundler name + parent package.json path
+// Returns empty bundler name if not a bundler dist path
+func parseBundlerPath(path string) (bundlerName, parentPackageJSONPath string) {
+	// Clean the path and split using the OS-specific separator
+	cleanPath := filepath.Clean(path)
+	pathParts := strings.Split(cleanPath, string(filepath.Separator))
+
+	// Look for: node_modules/{bundler}/dist/...
+	for i, part := range pathParts {
+		if part == "node_modules" && i+2 < len(pathParts) {
+			bundler := pathParts[i+1]
+			distDir := pathParts[i+2]
+
+			// Check for supported bundlers with dist directories
+			if (bundler == "next" || bundler == "vite") && distDir == "dist" {
+				// Build parent package.json path: node_modules/{bundler}/package.json
+				parentParts := pathParts[:i+2] // Include up to bundler directory
+				parentParts = append(parentParts, "package.json")
+				parentPath := strings.Join(parentParts, string(filepath.Separator))
+				return bundler, parentPath
+			}
+		}
+	}
+	return "", ""
+}
+
+// loadPackageJSON reads and parses a package.json file using the same logic as the main parser
+func loadPackageJSON(packageJSONPath string, resolver file.Resolver) *packageJSON {
+	locations, err := resolver.FilesByPath(packageJSONPath)
+	if err != nil || len(locations) == 0 {
+		return nil
+	}
+
+	contentReader, err := resolver.FileContentsByLocation(locations[0])
+	if err != nil {
+		return nil
+	}
+	defer contentReader.Close()
+
+	// Use the same JSON decoder approach as the main parsePackageJSON function
+	dec := json.NewDecoder(contentReader)
+	var pkg packageJSON
+	if err := dec.Decode(&pkg); err != nil {
+		return nil
+	}
+
+	return &pkg
 }
