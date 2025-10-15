@@ -117,8 +117,9 @@ func (c *Collection) PackagesByPathFlexible(path string) []Package {
 #### 2. Helper Function: `alternatePathForm()`
 
 ```go
-// alternatePathForm returns the path with opposite leading slash form.
+// alternatePathForm returns the path with opposite leading separator form.
 // This helps match paths when one source uses absolute paths and another uses relative paths.
+// Uses filepath.Separator for cross-platform compatibility (Unix: /, Windows: \\).
 // Examples:
 //
 //	"/usr/share/file" -> "usr/share/file"

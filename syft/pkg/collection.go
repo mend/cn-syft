@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"path/filepath"
 	"strings"
 	"sync"
 
@@ -343,8 +344,9 @@ func (s *orderedIDSet) delete(id artifact.ID) {
 	}
 }
 
-// alternatePathForm returns the path with opposite leading slash form.
+// alternatePathForm returns the path with opposite leading separator form.
 // This helps match paths when one source uses absolute paths and another uses relative paths.
+// Uses filepath.Separator to work correctly on both Unix (/) and Windows (\).
 // Examples:
 //
 //	"/usr/share/file" -> "usr/share/file"
@@ -352,14 +354,16 @@ func (s *orderedIDSet) delete(id artifact.ID) {
 //	""                -> "/"
 //	"/"               -> ""
 func alternatePathForm(path string) string {
+	sep := string(filepath.Separator)
+
 	if path == "" {
-		return "/"
+		return sep
 	}
-	if path == "/" {
+	if path == sep {
 		return ""
 	}
-	if strings.HasPrefix(path, "/") {
-		return strings.TrimPrefix(path, "/")
+	if strings.HasPrefix(path, sep) {
+		return strings.TrimPrefix(path, sep)
 	}
-	return "/" + path
+	return sep + path
 }
