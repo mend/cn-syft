@@ -110,7 +110,10 @@ func findOwnershipByFilesRelationships(catalog *pkg.Collection) map[artifact.ID]
 			}
 
 			// look for package(s) in the catalog that may be owned by this package and mark the relationship
-			for _, subPackage := range catalog.PackagesByPath(ownedFilePath) {
+			// Use PackagesByPathFlexible to handle both absolute and relative path formats.
+			// This fixes path mismatch between RPM metadata (absolute) and package locations (relative in filesystem scans).
+			// See internal/relationship/OWNERSHIP_PATH_FIX.md for complete details.
+			for _, subPackage := range catalog.PackagesByPathFlexible(ownedFilePath) {
 				subID := subPackage.ID()
 				if subID == id {
 					continue

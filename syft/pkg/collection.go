@@ -1,6 +1,8 @@
 package pkg
 
 import (
+	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/jinzhu/copier"
@@ -67,6 +69,32 @@ func (c *Collection) PackagesByPath(path string) []Package {
 	defer c.lock.RUnlock()
 
 	return c.packages(c.idsByPath[path].slice)
+}
+
+// PackagesByPathFlexible returns all packages discovered from the given path,
+// trying both absolute and relative path forms if needed.
+// This is useful when ownership paths (from RPM metadata) may not match
+// package location paths (from catalogers) due to leading slash differences.
+//
+// See internal/relationship/OWNERSHIP_PATH_FIX.md for complete background and rationale.
+func (c *Collection) PackagesByPathFlexible(path string) []Package {
+	c.lock.RLock()
+	defer c.lock.RUnlock()
+
+	// Try exact match first
+	if ids, exists := c.idsByPath[path]; exists && len(ids.slice) > 0 {
+		return c.packages(ids.slice)
+	}
+
+	// Try alternate form (with/without leading slash)
+	altPath := alternatePathForm(path)
+	if altPath != path {
+		if ids, exists := c.idsByPath[altPath]; exists && len(ids.slice) > 0 {
+			return c.packages(ids.slice)
+		}
+	}
+
+	return nil
 }
 
 // PackagesByName returns all packages that were discovered with a matching name.
@@ -314,4 +342,28 @@ func (s *orderedIDSet) delete(id artifact.ID) {
 			return
 		}
 	}
+}
+
+// alternatePathForm returns the path with opposite leading separator form.
+// This helps match paths when one source uses absolute paths and another uses relative paths.
+// Uses filepath.Separator to work correctly on both Unix (/) and Windows (\).
+// Examples:
+//
+//	"/usr/share/file" -> "usr/share/file"
+//	"usr/share/file"  -> "/usr/share/file"
+//	""                -> "/"
+//	"/"               -> ""
+func alternatePathForm(path string) string {
+	sep := string(filepath.Separator)
+
+	if path == "" {
+		return sep
+	}
+	if path == sep {
+		return ""
+	}
+	if strings.HasPrefix(path, sep) {
+		return strings.TrimPrefix(path, sep)
+	}
+	return sep + path
 }
