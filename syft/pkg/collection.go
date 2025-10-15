@@ -74,6 +74,8 @@ func (c *Collection) PackagesByPath(path string) []Package {
 // trying both absolute and relative path forms if needed.
 // This is useful when ownership paths (from RPM metadata) may not match
 // package location paths (from catalogers) due to leading slash differences.
+//
+// See internal/relationship/OWNERSHIP_PATH_FIX.md for complete background and rationale.
 func (c *Collection) PackagesByPathFlexible(path string) []Package {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
