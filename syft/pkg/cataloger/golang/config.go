@@ -90,7 +90,7 @@ func defaultGoModDir() string {
 func DefaultMainModuleVersionConfig() MainModuleVersionConfig {
 	return MainModuleVersionConfig{
 		FromLDFlags:       true,
-		FromContents:      true,
+		FromContents:      false,
 		FromBuildSettings: true,
 	}
 }
