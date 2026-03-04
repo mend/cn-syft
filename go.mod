@@ -101,7 +101,10 @@ require (
 	modernc.org/sqlite v1.51.0
 )
 
-require github.com/pb33f/ordered-map/v2 v2.3.1
+require (
+	github.com/anchore/syft v1.45.1
+	github.com/pb33f/ordered-map/v2 v2.3.1
+)
 
 require (
 	cel.dev/expr v0.25.1 // indirect
