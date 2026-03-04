@@ -274,6 +274,7 @@ require (
 )
 
 require (
+	github.com/anchore/syft v1.42.1
 	github.com/cespare/xxhash/v2 v2.3.0
 	github.com/gpustack/gguf-parser-go v0.23.1
 	github.com/wk8/go-ordered-map/v2 v2.1.8
