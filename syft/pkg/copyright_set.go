@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/mitchellh/hashstructure/v2"
+	"github.com/gohugoio/hashstructure"
 
 	"github.com/anchore/syft/internal/log"
 	"github.com/anchore/syft/syft/artifact"
@@ -78,7 +78,7 @@ func (c CopyrightsSet) ToSlice() []Copyright {
 
 func (c CopyrightsSet) Hash() (uint64, error) {
 	// access paths and filesystem IDs are not considered when hashing a copyright set, only the real paths
-	return hashstructure.Hash(c.ToSlice(), hashstructure.FormatV2, &hashstructure.HashOptions{
+	return hashstructure.Hash(c.ToSlice(), &hashstructure.HashOptions{
 		ZeroNil:      true,
 		SlicesAsSets: true,
 	})

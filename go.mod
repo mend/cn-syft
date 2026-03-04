@@ -101,6 +101,7 @@ require (
 )
 
 require (
+	github.com/anchore/syft v1.55.0
 	github.com/pb33f/ordered-map/v2 v2.3.2
 	github.com/tailscale/hujson v0.0.0-20260302212456-ecc657c15afd
 	golang.org/x/sys v0.49.0
